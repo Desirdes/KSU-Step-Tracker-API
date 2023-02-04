@@ -1,6 +1,5 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
-
+The KSU Department of Exercise Science and Sport Management wants to have a system that allows their patients to input their general information, such as age, sex, race, etc., and their medical info, such as body composition, weight, etc., and step count so that the system can display their target weight, current step count, and target step count.
 # Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
 1.	Installation process
