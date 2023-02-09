@@ -40,6 +40,9 @@ TODO: Guide users through getting your code up and running on their own system. 
     * choose CSS
     * `cd ksu-wlt-app`
   * Open Visual Studio and open the ksu-wlt-app folder
+    * ng build --build project for production 
+    * npm start --start production server 
+    * ng serve --run development build
 
 
 # Build and Test
