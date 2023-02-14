@@ -1,13 +1,180 @@
-<div class="header-container">
-  <img class = "header-image" src="/assets/imgs/people-jogging-in-place.jpg" alt="people jogging in place outside" srcset="">
-  <div class="header-text">
-      <h1>Welcome to KSU Weight Loss Tracker</h1>
-      <button type="button" class="btn btn-outline-warning" [routerLink]="'questionnaire'">Get Started</button>
-  </div>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+<div class="navbar navbar-expand-lg fixed-top">
+  <a href="#default" class="navbar-brand">KSU Weighloss Tracker</a>
+
+  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+    <div class="pull-right">
+    <ul class="nav navbar-nav">
+      <li class="nav-item">
+        <div id="custom-search" class="top-search-bar">
+            <input class="form-control" type="text" placeholder="Search..">
+        </div>
+      </li>
+      <button type="button" class="icon-button">
+        <span class="material-icons"> notifications</span>
+        <span class="icon-button__badge">2</span>
+      </button> 
+      
+      <!-- <li class="nav-item dropdown nav-user">
+        <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://img.icons8.com/dusk/100/000000/user-female-circle.png" alt="" class="user-avatar-md rounded-circle"></a>
+        <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+            <div class="nav-user-info">
+                <h5 class="mb-0 text-white nav-user-name">Tikoha Samga</h5>
+                <span class="status"></span><span class="ml-2">Available</span>
+            </div>
+            <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
+            <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+            <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+        </div>
+    </li> -->
+  </ul>
 </div>
-<!---Our Purpose-->
-<div class="container">
-  <i class="material-symbols-outlined">sports_gymnastics</i>
-  <h2>Our Purpose</h2>
-  <p>Ultimately the goal is the creation of a web-based interface that would allow clinicians to conduct a pilot study of the predictive powers of the algorithm and value in managing obesity.</p>
 </div>
+</div>
+
+<!--  Main Body -->
+<!-- <div class="page-wrapper">
+  <aside class="menu-sidebar2">
+    
+    <div class="menu-sidebar2__content js-scrollbar1">
+        <div class="account2">
+            <div class="image img-cir img-120">
+                <img src="assets/img/avatar-01.jpg" alt="John Doe" />
+            </div>
+            <h4 class="name">john doe</h4>
+            <h5 class="email">someone@gmail.com</h5>
+            <a href="#">Sign out</a>
+        </div>
+        
+        
+    </div>
+</aside> -->
+<!-- END MENU SIDEBAR-->
+<!-- Right section -->
+
+<!-- </div> -->
+
+
+<div class="row">
+    <div class="column1">
+        <div class="image img-cir img-120">
+            <img src="assets/img/avatar-01.jpg" alt="John Doe" />
+        </div>
+        <h4 class="name">john doe</h4>
+        <h5 class="email">someone@gmail.com</h5>
+        <a href="#">Sign out</a>
+    </div>
+    <div class="column2">
+        <div class="row1">
+            <form class="profile-form">
+                <mat-grid-list cols="2" gutterSize="1px" rowHeight="70px" >
+                    <mat-grid-tile>
+                        <label>Name</label>
+                    </mat-grid-tile>
+                    
+                    <mat-grid-tile>
+                        <mat-form-field class="profile-full-width">
+                            <mat-label>Name</mat-label>
+                            <input matInput value="John" disabled="true" />
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile>
+                        <label>Email</label>
+                    </mat-grid-tile>
+                    
+                    <mat-grid-tile>
+                        <mat-form-field class="profile-full-width">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput value="email@gmail.com" disabled="true" />
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    
+                    <mat-grid-tile>
+                        <label>Sex</label>
+                    </mat-grid-tile>
+                    
+                    <!-- <mat-grid-tile>
+                        <mat-form-field class="profile-full-width">
+                        <mat-label>Sex</mat-label>
+                        <mat-select>
+                            <mat-option value="option">Male</mat-option>
+                            <mat-option value="option">Female</mat-option>
+                        </mat-select>
+                        
+                        </mat-form-field>
+                    </mat-grid-tile> -->
+                    <mat-grid-tile>
+                        <mat-form-field class="profile-full-width">
+                        <mat-label>Sex</mat-label>
+                        <input matInput value="Male/Female" disabled="true" />
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    
+                    <mat-grid-tile>
+                        <label>Current Weight</label>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile>
+                        <mat-form-field class="profile-full-width">
+                        <mat-label>Current weight</mat-label>
+                        <input matInput value="in lb" disabled="true" />
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile>
+                        <label>Target Weight</label>
+                    </mat-grid-tile>
+                    
+                    <mat-grid-tile>
+                        <mat-form-field class="profile-full-width">
+                        <mat-label>Target Weight</mat-label>
+                        <input matInput value="100" [(ngModel)]="targetWeight" disabled="true" />
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    
+                    <mat-grid-tile>
+                    <label>Step Count</label>
+                    </mat-grid-tile>
+                    
+                    <mat-grid-tile>
+                        <mat-form-field class="profile-full-width">
+                        <mat-label>Step Count</mat-label>
+                        <input matInput value="ex.6000" disabled="true" />
+                        </mat-form-field>                
+                    </mat-grid-tile>
+                    
+                    <mat-grid-tile>
+                        <label>Prescribed Step Count</label>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile>
+                        <mat-form-field class="profile-full-width">
+                        <mat-label>Prescribed Steps</mat-label>
+                        <input matInput value="{{ valueChange() }}"disabled="true" />
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    
+                </mat-grid-list>
+
+                <mat-form-field class="button-row">
+                    <button mat-button style="margin-left: 300px">Edit</button>
+                    <button mat-button style="margin-left: 50px">Update</button>
+                </mat-form-field>
+                
+            </form>
+            
+        </div>
+        <div class="row2">
+            <app-chart></app-chart>
+        </div>
+        
+
+    </div>
+  </div> 
+
+
+
+
