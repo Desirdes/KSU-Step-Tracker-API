@@ -1,0 +1,99 @@
+<div class="row justify-content-center my-5">
+<form class="col-lg-6" [formGroup]="questionnaireForm" ngSubmit="onSubmit()">
+    <h2 class="mb-3">General Info</h2>
+    <p>Please enter the following information below.</p>
+    <div class="form-row">
+        <div class="form-group col-md">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id= "firstName" formControlName="firstName" placeholder="Enter your first name">
+        </div>
+            <div class="form-group col-md">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id= "lastName" formControlName="lastName" placeholder="Enter your last name">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-sm-3">
+            <label for="dateOfBirth">Date of Birth</label>
+            <input type="date" id="dateOfBirth" formControlName="dateOfBirth" name="dateOfBirth">
+        </div>
+        <div class="form-group col-sm">
+            <label for="sex">Sex</label>
+            <select class="custom-select" id="sex" formControlName="sex">
+                <option selected>Choose...</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+            </select>
+        </div>
+        <div class="form-group col-sm">
+            <label for="race">Race</label>
+            <select class="custom-select" id="race" formControlName="race">
+                <option selected>Choose...</option>
+                <option value="1">Black or African American</option>
+                <option value="2">White</option>
+                <option value="3">American Indian or Alaskan Native</option>
+                <option value="4">Asian</option>
+                <option value="5">Native Hawaiian or Other Pacific Islander</option>
+            </select>
+        </div>
+    </div>
+    <h2>Medical Info</h2>
+    <p>Please asnwer the following with the correct measurements for accurate results.</p>
+    <div class="form-row">
+        <div class="form-group col-sm">
+            <label for="height">Height (inches)</label>
+            <input type="text" class="form-control" formControlName="height" id= "height" placeholder="e.g. 62">
+        </div>
+        <div class="form-group col-sm">
+            <label for="weight">Weight (lb)</label>
+            <input type="text" class="form-control" formControlName="weight" id= "weight" placeholder="e.g. 152">
+        </div>
+        <div class="form-group col-sm">
+            <label for="waistCircumference">Waist Circumference (inches)</label>
+            <input type="text" class="form-control" formControlName="waistCircumference"  id= "waistCircumference" placeholder="e.g. 29">
+        </div>
+        <div class="form-group col-sm">
+            <label for="headCircumference">Head Circumference (inches)</label>
+            <input type="text" class="form-control" formControlName="headCircumference" id= "headCircumference" placeholder="e.g. 22.44">
+        </div>
+    </div>
+    <h2>Fitness Goal</h2>
+    <p>What is your fitness goal?</p>
+    <div class="form-row">
+        <div class="form-group col-sm">
+            <label for="targetWeightLoss">Target Weight Loss (%)</label>
+            <select class="custom-select" id="targetWeightLoss" formControlName="targetWeightLoss">
+                <option selected>Choose...</option>
+                <option value="1">5%</option>
+                <option value="2">6%</option>
+                <option value="3">7%</option>
+                <option value="4">8%</option>
+                <option value="5">9%</option>
+                <option value="6">10%</option>
+            </select>
+        </div>
+    </div>
+    <button class="btn btn-dark" type="submit" [disabled]="!questionnaireForm.valid">Submit</button>
+</form>
+</div>
+
+<script>
+    function bodyFat() {
+        var currentwWight = parseInt(document.getElementById("weight"));
+        var currentWaist = parseInt(document.getElementById("waist"));
+        var height = parseInt(document.getElementById("height"));
+        var bodyFat = (currentWeight / ((Math.pow(height, 2)))) * 703;
+        console.log("Your body fat is " + bodyFat);
+    }
+
+    function targetWeight(weight) {
+        var targetWeightLoss = parseInt(document.getElementById("targetWeightLoss"));
+        var targetWeight = currentWeight - targetWeightLoss;
+        console.log("Your target weight is " + targetWeight);
+    }
+
+    //Power Regression Equation for step count
+    function stepCount() {
+
+    }
+</script>
