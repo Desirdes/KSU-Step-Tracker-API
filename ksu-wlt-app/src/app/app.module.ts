@@ -9,19 +9,20 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     NavbarComponent,
-    QuestionnaireComponent
+    QuestionnaireComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
