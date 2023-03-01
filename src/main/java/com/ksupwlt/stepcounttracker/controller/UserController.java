@@ -4,6 +4,7 @@ import com.ksupwlt.stepcounttracker.entity.Person;
 import com.ksupwlt.stepcounttracker.service.PersonService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class UserController {
     }
 
     @GetMapping("/persons/{id}")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Person> getPerson(@PathVariable long id){
         Person person = personService.getPersonById(id);
         return new ResponseEntity<Person>(person, HttpStatus.OK);
