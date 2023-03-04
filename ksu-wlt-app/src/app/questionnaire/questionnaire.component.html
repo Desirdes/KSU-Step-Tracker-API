@@ -4,7 +4,7 @@
         your measurements and target data</p>
 </div>
 <div class="row justify-content-center my-5">
-<form class="col-lg-6" [formGroup]="questionnaireForm" (ngSubmit)="questionnaireForm.status !== 'INVALID' && submit()">
+<form class="col-lg-6" [formGroup]="questionnaireForm" (ngSubmit)="questionnaireForm.status !== 'INVALID' && onsubmit()">
     <!--General Info Section-->
     <h2 class="mb-3">General Info</h2>
     <p>Please enter the following information below.</p>
@@ -131,7 +131,7 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-dark" type="submit"  [disabled]="questionnaireForm.status === 'INVALID'" (click)="submit()">Submit</button>
+    <button class="btn btn-dark" type="submit"  [disabled]="questionnaireForm.status === 'INVALID'" (click)="onsubmit()">Submit</button>
 </form>
 </div>
 
@@ -143,24 +143,3 @@
 
 <!---(click)="this.onsubmit()-->
 <!---ngSubmit="onSubmit()-->
-
-<!--<script>
-    function targetWeight() {
-        var currentWeight = parseInt(document.getElementById("weight"));
-        var targetWeightLoss = parseInt(document.getElementById("targetWeightLoss"));
-        var targetWeight = currentWeight - targetWeightLoss;
-        return targetWeight;
-    }
-
-    function targetBodyFatPercentage() {
-        var currentBodyFat = parseInt(document.getElementById("bodyFatPercentage"));
-        var targetWeightLoss = document.getElementById("targetWeightLoss");
-        var targetBodyFatPercentage = currentBodyFat / targetWeightLoss;
-        return targetBodyFatPercentage;
-    }
-
-    //Power Regression Equation for step count
-    function stepCount() {
-
-    }
-</script>-->

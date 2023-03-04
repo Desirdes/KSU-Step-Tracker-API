@@ -50,13 +50,15 @@ constructor(private fb: FormBuilder, private router: Router) { }
 public targetWeight = 0;
 public targetBodyFatPercentage = 0;
 public stepsPerDay = 0;
+public lbsConversionToKG = 2.2;
+public percentageConversionToKG = 0.2;
 
 //constructor(private router: Router) {}
 
 public submit() {
-  //this.router.navigate(['/user-profile']);
   // TODO: Use EventEmitter with form value
   console.warn(this.questionnaireForm.value);
+  this.router.navigate(['/user-profile']);
 }
 
 public onsubmit() {
@@ -65,29 +67,31 @@ public onsubmit() {
   this.calcSteps();
 }
 
-public calcTargetWeight() {
-  var currentWeight = +this.questionnaireForm.value.weight!;
-  var targetWeightLoss = (+this.questionnaireForm.value.targetWeightLossPercentage!/100) * currentWeight;
+public calcTargetWeight() { //This is correct
+  var currentWeight = +this.questionnaireForm.value.weight!/this.lbsConversionToKG;
+  var targetWeightLoss = (+this.questionnaireForm.value.targetWeightLossPercentage!/100) + this.percentageConversionToKG;
   var targetWeight = currentWeight - targetWeightLoss;
   this.targetWeight = targetWeight;
 }
 
-public calcTargetBodyFatPercentage() {
-  var currentBodyFat = (+this.questionnaireForm.value.bodyFatPercentage!/100) * +this.questionnaireForm.value.weight!;
-  var targetWeightLoss = (+this.questionnaireForm.value.targetWeightLossPercentage!/100) * +this.questionnaireForm.value.weight!;
-  var targetFatMass = currentBodyFat - targetWeightLoss;
-  var targetBodyFatPercentage = (targetFatMass / (+this.questionnaireForm.value.weight! - targetWeightLoss)) * 100;
+public calcTargetBodyFatPercentage() { //This needs work; it may be right but weight conversion is iffy
+  var currentBodyFat = (+this.questionnaireForm.value.bodyFatPercentage!/100);
+  var currentFatMass = currentBodyFat * +this.questionnaireForm.value.weight!/this.lbsConversionToKG;
+  var targetWeightLoss = (+this.questionnaireForm.value.targetWeightLossPercentage!/100) + this.percentageConversionToKG;
+  var newFatMass = currentFatMass - targetWeightLoss;
+  var targetWeight = (+this.questionnaireForm.value.weight!/this.lbsConversionToKG) - targetWeightLoss; 
+  var targetBodyFatPercentage = (newFatMass / targetWeight) * 100;
   this.targetBodyFatPercentage = targetBodyFatPercentage;
 }
 
-public calcSteps() {
+public calcSteps() { //This is starting to get right, but the above is wrong
   if(this.questionnaireForm.value.sex == "Male") {
-    var stepsPerPoundPerDay =  39377.34 / (this.targetBodyFatPercentage/100)^1.3405;
-    this.stepsPerDay = stepsPerPoundPerDay * (+this.questionnaireForm.value.weight! * (+this.questionnaireForm.value.bodyFatPercentage!/100));
+    var stepsPerPoundPerDay =  39377.34 / (this.targetBodyFatPercentage)^1.3405;
+    this.stepsPerDay = stepsPerPoundPerDay * ((+this.questionnaireForm.value.weight!/this.lbsConversionToKG) * (+this.questionnaireForm.value.bodyFatPercentage!/100));
   }
   else if (this.questionnaireForm.value.sex == "Female") {
-    var stepsPerPoundPerDay =  261425.4 / (this.targetBodyFatPercentage/100)^1.8797;
-    this.stepsPerDay = stepsPerPoundPerDay * (+this.questionnaireForm.value.weight! * (+this.questionnaireForm.value.bodyFatPercentage!/100));
+    var stepsPerPoundPerDay =  261425.4 / (this.targetBodyFatPercentage)^1.8797;
+    this.stepsPerDay = stepsPerPoundPerDay * ((+this.questionnaireForm.value.weight!/this.lbsConversionToKG) * (+this.questionnaireForm.value.bodyFatPercentage!/100));
   }
 }
 }
