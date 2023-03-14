@@ -18,6 +18,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartComponent } from './chart/chart.component';
 import { NgChartsModule } from 'ng2-charts';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { NgChartsModule } from 'ng2-charts';
     NavbarComponent,
     QuestionnaireComponent,
     UserProfileComponent,
-    ChartComponent
+    ChartComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

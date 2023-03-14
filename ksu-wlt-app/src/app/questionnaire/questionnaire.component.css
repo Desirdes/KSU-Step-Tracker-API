@@ -1,6 +1,4 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -17,7 +15,6 @@ small {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 100px;
     padding: 20px;
     width: 100%;
     flex-wrap: nowrap;

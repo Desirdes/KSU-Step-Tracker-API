@@ -67,6 +67,7 @@ public onsubmit() {
   this.calcSteps();
 }
 
+//Round to the nearest 10th
 public calcTargetWeight() { //This is correct
   var currentWeight = +this.questionnaireForm.value.weight!/this.lbsConversionToKG;
   var targetWeightLoss = (+this.questionnaireForm.value.targetWeightLossPercentage!/100) + this.percentageConversionToKG;
