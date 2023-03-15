@@ -50,8 +50,8 @@ TODO: To get started with git repository using IntelliJ:
 1. Create a **_New Project_**
 2. Choose the **_Version Control_** option
 3. Use this link for the repo: **[https://CapstoneTeam5@dev.azure.com/CapstoneTeam5/KSU%20Patient%20Weight%20Loss%20Tracker/_git/KSU%20Patient%20Weight%20Loss%20Tracker]()**
-4. Password for repo: **saw2jhtct7facte7opudi6qejqzbdkwxyzj7ndhiak66xdpimubq**
+4. Password for repo: **rdfb6wyauwjdd56dmckifirgfmphgv6w5tk7qmzev4kd6fe35rdq**
 
-TODO: **_To get the latest version of the project, create a pull request from master._**
+TODO: **_To get the latest version of the project, git fetch from master._**
 
 **_Production and Dev Environment links coming soon_**
