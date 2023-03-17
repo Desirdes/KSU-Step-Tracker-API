@@ -1,7 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { MatRadioModule } from '@angular/material/radio';
@@ -19,6 +18,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartComponent } from './chart/chart.component';
 import { NgChartsModule } from 'ng2-charts';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -28,7 +29,9 @@ import { NgChartsModule } from 'ng2-charts';
     NavbarComponent,
     QuestionnaireComponent,
     UserProfileComponent,
-    ChartComponent
+    ChartComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
