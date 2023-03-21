@@ -55,7 +55,7 @@ export class SignupComponent {
 
 
   public onsubmit() {
-    this.router.navigate(['/user-profile']);
+    this.router.navigate(['/questionnaire']);
   }
 
 }
