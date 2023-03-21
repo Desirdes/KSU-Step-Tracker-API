@@ -5,6 +5,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'user-profile', component: UserProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'user-dashboard', component: UserDashboardComponent },
 ];
 
 @NgModule({

@@ -23,7 +23,7 @@ export class LoginComponent {
   get password() { return this.loginForm.get('password'); }
 
   public onsubmit() {
-    this.router.navigate(['/user-profile']);
+    this.router.navigate(['/user-dashboard']);
   }
 
   constructor(private fb: FormBuilder, private router: Router) { }
