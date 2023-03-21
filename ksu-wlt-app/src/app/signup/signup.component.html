@@ -12,7 +12,7 @@
 
                 <div class="form-outline mb-4">
                   <input type="text" id="name" class="form-control form-control-lg" formControlName="name" [ngClass]="{error : getControl('name')?.errors && getControl('name')?.touched}" />
-                  <label class="form-label" for="name">Your Name</label>
+                  <label class="form-label" for="name">Full Name</label>
                   <div *ngIf="getControl('name')?.errors && getControl('name')?.touched">
                     <small class="text-danger" *ngIf="getControl('name')?.errors?.['required']">Your full name is required</small>
                   </div>
@@ -20,7 +20,7 @@
 
                 <div class="form-outline mb-4">
                   <input type="email" id="email" class="form-control form-control-lg" formControlName="email" ngModel [email]="true" [ngClass]="{error : getControl('email')?.errors && getControl('email')?.touched}" />
-                  <label class="form-label" for="email">Your Email</label>
+                  <label class="form-label" for="email">Email</label>
                   <div *ngIf="getControl('email')?.errors && getControl('email')?.touched">
                     <small class="text-danger" *ngIf="getControl('email')?.errors?.['required']">Your email is required</small>
                     <small class="text-danger" *ngIf="getControl('email')?.errors?.['email']">Email address is not valid</small>
