@@ -1,29 +1,44 @@
 package com.ksupwlt.stepcounttracker.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String first_name;
-    private String last_name;
+    private String full_name;
+    private String email;
+    private String demographic;
     private String gender;
     private Integer age;
 
-    public Person(Long id, String first_name, String last_name, String gender, Integer age) {
-        this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.gender = gender;
-        this.age = age;
-    }
+    @OneToOne(fetch =FetchType.EAGER, mappedBy = "person", cascade = CascadeType.ALL)
+    private User user;
+
+    @OneToMany(fetch =FetchType.LAZY, mappedBy = "person", cascade = CascadeType.ALL)
+    private List<Activity> activities;
+    @OneToMany(fetch =FetchType.LAZY, mappedBy = "person", cascade = CascadeType.ALL)
+    private List<Target> targets;
+    @OneToMany(fetch =FetchType.LAZY, mappedBy = "person", cascade = CascadeType.ALL)
+    private List<Biometric> biometrics;
 
     public Person() {
+    }
+
+    public Person(Long id, String full_name, String email, String demographic, String gender, Integer age, User user, List<Activity> activities, List<Target> targets, List<Biometric> biometrics) {
+        this.id = id;
+        this.full_name = full_name;
+        this.email = email;
+        this.demographic = demographic;
+        this.gender = gender;
+        this.age = age;
+        this.user = user;
+        this.activities = activities;
+        this.targets = targets;
+        this.biometrics = biometrics;
     }
 
     public Long getId() {
@@ -34,20 +49,28 @@ public class Person {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFull_name() {
+        return full_name;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDemographic() {
+        return demographic;
+    }
+
+    public void setDemographic(String demographic) {
+        this.demographic = demographic;
     }
 
     public String getGender() {
@@ -64,5 +87,37 @@ public class Person {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
+
+    public List<Target> getTargets() {
+        return targets;
+    }
+
+    public void setTargets(List<Target> targets) {
+        this.targets = targets;
+    }
+
+    public List<Biometric> getBiometrics() {
+        return biometrics;
+    }
+
+    public void setBiometrics(List<Biometric> biometrics) {
+        this.biometrics = biometrics;
     }
 }
