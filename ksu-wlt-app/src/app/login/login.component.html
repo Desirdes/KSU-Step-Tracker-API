@@ -1,27 +1,5 @@
-<!--<div class="outer">
-    <div class="container">
-        <div class="row">
-            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
-                <div class="panel border bg-white">
-                    <div class="panel-heading">
-                        <h3 class="pt-3 font-weight-bold">Login</h3>
-                    </div>
-                    <div class="panel-body p-3">
-                        <form>
-                            <div class="form-group pt-3">
-                                <div class="input-field">
-                                    <span class="fa fa-user p-2"></span>
-                                    <input type="text" placeholder="Username">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-    </div>
-</div>-->
 <section class="vh-100 bg-image"
-  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+  style="background-image: url('/assets/imgs/berries.jpg');">
   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -30,24 +8,31 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Login</h2>
 
-              <form>
+              <form [formGroup]="loginForm">
 
-                <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example3cg">Your Email</label>
+                <div class="form-group form-outline mb-4">
+                  <input type="text" id="username" class="form-control form-control-lg" formControlName="username" [ngClass]="{error : getControl('username')?.errors && getControl('username')?.touched}"/>
+                  <label class="form-label" for="LoginForm">Username</label>
+                  <div *ngIf="getControl('username')?.errors && getControl('username')?.touched">
+                    <small class="text-danger" *ngIf="getControl('username')?.errors?.['required']">Username is required</small>
+                </div>
                 </div>
 
-                <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cg">Password</label>
+                <div class="form-group form-outline mb-4">
+                  <input type="password" id="password" class="form-control form-control-lg" formControlName="password" [ngClass]="{error : getControl('password')?.errors && getControl('password')?.touched}"/>
+                  <label class="form-label" for="LoginForm">Password</label>
+                  <div *ngIf="getControl('password')?.errors && getControl('password')?.touched">
+                    <small class="text-danger" *ngIf="getControl('password')?.errors?.['required']">Password is required</small>
+                </div>
+
                 </div>
 
                 <div class="d-flex justify-content-center">
                   <button type="button"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" [routerLink]="'user-profile'">Login</button>
+                    class="btn btn-warning btn-block btn-lg text-body" [disabled]="loginForm.status === 'INVALID'" (click)="onsubmit()">Login</button>
                 </div>
 
-                <p class="text-center text-muted mt-5 mb-0">Don't have an account yet? <a [routerLink]="['signup']"
+                <p class="text-center text-muted mt-5 mb-0">Don't have an account yet? <a [routerLink]="['/signup']"
                     class="fw-bold text-body"><u>Signup here</u></a></p>
 
               </form>
