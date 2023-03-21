@@ -20,6 +20,7 @@ import { ChartComponent } from './chart/chart.component';
 import { NgChartsModule } from 'ng2-charts';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SignupComponent } from './signup/signup.component';
     UserProfileComponent,
     ChartComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    UserDashboardComponent
   ],
   imports: [
     BrowserModule,
