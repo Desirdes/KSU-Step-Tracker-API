@@ -22,4 +22,10 @@ public class PersonController {
         List<Person> list = personService.getAllPersons();
         return new ResponseEntity<List<Person>>(list, HttpStatus.OK);
     }
+
+//    @GetMapping("/persons")
+//    public List<Person> getAllPersonsWithDetails() {
+//        List<Person> persons = personService.getAllPersonsDetails();
+//        return persons;
+//    }
 }

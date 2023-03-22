@@ -1,25 +1,27 @@
 package com.ksupwlt.stepcounttracker.entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 public class Biometric {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Float height;
-    private Float weight;
-    private Float waistCircumference;
-    private Float neckCircumference;
-    private Float bodyFatPercentage;
+    private BigDecimal height;
+    private BigDecimal weight;
+    private BigDecimal waistCircumference;
+    private BigDecimal neckCircumference;
+    private BigDecimal bodyFatPercentage;
 
     @ManyToOne
+    @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
     public Biometric() {
     }
 
-    public Biometric(Long id, Float height, Float weight, Float waistCircumference, Float neckCircumference, Float bodyFatPercentage, Person person) {
+    public Biometric(Long id, BigDecimal height, BigDecimal weight, BigDecimal waistCircumference, BigDecimal neckCircumference, BigDecimal bodyFatPercentage, Person person) {
         this.id = id;
         this.height = height;
         this.weight = weight;
@@ -37,43 +39,43 @@ public class Biometric {
         this.id = id;
     }
 
-    public Float getHeight() {
+    public BigDecimal getHeight() {
         return height;
     }
 
-    public void setHeight(Float height) {
+    public void setHeight(BigDecimal height) {
         this.height = height;
     }
 
-    public Float getWeight() {
+    public BigDecimal getWeight() {
         return weight;
     }
 
-    public void setWeight(Float weight) {
+    public void setWeight(BigDecimal weight) {
         this.weight = weight;
     }
 
-    public Float getWaistCircumference() {
+    public BigDecimal getWaistCircumference() {
         return waistCircumference;
     }
 
-    public void setWaistCircumference(Float waistCircumference) {
+    public void setWaistCircumference(BigDecimal waistCircumference) {
         this.waistCircumference = waistCircumference;
     }
 
-    public Float getNeckCircumference() {
+    public BigDecimal getNeckCircumference() {
         return neckCircumference;
     }
 
-    public void setNeckCircumference(Float neckCircumference) {
+    public void setNeckCircumference(BigDecimal neckCircumference) {
         this.neckCircumference = neckCircumference;
     }
 
-    public Float getBodyFatPercentage() {
+    public BigDecimal getBodyFatPercentage() {
         return bodyFatPercentage;
     }
 
-    public void setBodyFatPercentage(Float bodyFatPercentage) {
+    public void setBodyFatPercentage(BigDecimal bodyFatPercentage) {
         this.bodyFatPercentage = bodyFatPercentage;
     }
 

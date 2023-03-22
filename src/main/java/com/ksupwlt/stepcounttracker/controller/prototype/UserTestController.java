@@ -2,6 +2,6 @@ package com.ksupwlt.stepcounttracker.controller.prototype;
 
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+//@RestController
 public class UserTestController {
 }

@@ -1,13 +1,18 @@
 package com.ksupwlt.stepcounttracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"activities","targets", "biometrics"})
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String full_name;
     private String email;
@@ -15,27 +20,26 @@ public class Person {
     private String gender;
     private Integer age;
 
-    @OneToOne(fetch =FetchType.EAGER, mappedBy = "person", cascade = CascadeType.ALL)
-    private User user;
+//    @OneToOne(fetch =FetchType.EAGER, mappedBy = "person", cascade = CascadeType.ALL)
+//    private User user;
 
     @OneToMany(fetch =FetchType.LAZY, mappedBy = "person", cascade = CascadeType.ALL)
-    private List<Activity> activities;
+    private List<Activity> activities = new ArrayList<>();
     @OneToMany(fetch =FetchType.LAZY, mappedBy = "person", cascade = CascadeType.ALL)
-    private List<Target> targets;
+    private List<Target> targets = new ArrayList<>();
     @OneToMany(fetch =FetchType.LAZY, mappedBy = "person", cascade = CascadeType.ALL)
-    private List<Biometric> biometrics;
+    private List<Biometric> biometrics = new ArrayList<>();
 
     public Person() {
     }
 
-    public Person(Long id, String full_name, String email, String demographic, String gender, Integer age, User user, List<Activity> activities, List<Target> targets, List<Biometric> biometrics) {
+    public Person(Long id, String full_name, String email, String demographic, String gender, Integer age, List<Activity> activities, List<Target> targets, List<Biometric> biometrics) {
         this.id = id;
         this.full_name = full_name;
         this.email = email;
         this.demographic = demographic;
         this.gender = gender;
         this.age = age;
-        this.user = user;
         this.activities = activities;
         this.targets = targets;
         this.biometrics = biometrics;
@@ -87,14 +91,6 @@ public class Person {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public List<Activity> getActivities() {

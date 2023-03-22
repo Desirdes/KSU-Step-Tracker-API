@@ -1,23 +1,25 @@
 package com.ksupwlt.stepcounttracker.entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 public class Target {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String dailySteps;
-    private Float weightLoss;
-    private Float weightLossPercentage;
+    private Integer dailySteps;
+    private BigDecimal weightLoss;
+    private BigDecimal weightLossPercentage;
 
     @ManyToOne
+    @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
     public Target() {
     }
 
-    public Target(Long id, String dailySteps, Float weightLoss, Float weightLossPercentage, Person person) {
+    public Target(Long id, Integer dailySteps, BigDecimal weightLoss, BigDecimal weightLossPercentage, Person person) {
         this.id = id;
         this.dailySteps = dailySteps;
         this.weightLoss = weightLoss;
@@ -33,27 +35,27 @@ public class Target {
         this.id = id;
     }
 
-    public String getDailySteps() {
+    public Integer getDailySteps() {
         return dailySteps;
     }
 
-    public void setDailySteps(String dailySteps) {
+    public void setDailySteps(Integer dailySteps) {
         this.dailySteps = dailySteps;
     }
 
-    public Float getWeightLoss() {
+    public BigDecimal getWeightLoss() {
         return weightLoss;
     }
 
-    public void setWeightLoss(Float weightLoss) {
+    public void setWeightLoss(BigDecimal weightLoss) {
         this.weightLoss = weightLoss;
     }
 
-    public Float getWeightLossPercentage() {
+    public BigDecimal getWeightLossPercentage() {
         return weightLossPercentage;
     }
 
-    public void setWeightLossPercentage(Float weightLossPercentage) {
+    public void setWeightLossPercentage(BigDecimal weightLossPercentage) {
         this.weightLossPercentage = weightLossPercentage;
     }
 
