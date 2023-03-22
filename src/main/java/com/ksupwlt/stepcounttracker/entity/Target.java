@@ -9,8 +9,8 @@ public class Target {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer dailySteps;
-    private BigDecimal weightLoss;
-    private BigDecimal weightLossPercentage;
+    private Float weightLoss;
+    private Float weightLossPercentage;
 
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
@@ -19,7 +19,7 @@ public class Target {
     public Target() {
     }
 
-    public Target(Long id, Integer dailySteps, BigDecimal weightLoss, BigDecimal weightLossPercentage, Person person) {
+    public Target(Long id, Integer dailySteps, Float weightLoss, Float weightLossPercentage, Person person) {
         this.id = id;
         this.dailySteps = dailySteps;
         this.weightLoss = weightLoss;
@@ -43,19 +43,19 @@ public class Target {
         this.dailySteps = dailySteps;
     }
 
-    public BigDecimal getWeightLoss() {
+    public Float getWeightLoss() {
         return weightLoss;
     }
 
-    public void setWeightLoss(BigDecimal weightLoss) {
+    public void setWeightLoss(Float weightLoss) {
         this.weightLoss = weightLoss;
     }
 
-    public BigDecimal getWeightLossPercentage() {
+    public Float getWeightLossPercentage() {
         return weightLossPercentage;
     }
 
-    public void setWeightLossPercentage(BigDecimal weightLossPercentage) {
+    public void setWeightLossPercentage(Float weightLossPercentage) {
         this.weightLossPercentage = weightLossPercentage;
     }
 
