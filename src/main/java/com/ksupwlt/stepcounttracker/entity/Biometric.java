@@ -21,8 +21,7 @@ public class Biometric {
     public Biometric() {
     }
 
-    public Biometric(Long id, Float height, Float weight, Float waistCircumference, Float neckCircumference, Float bodyFatPercentage, Person person) {
-        this.id = id;
+    public Biometric(Float height, Float weight, Float waistCircumference, Float neckCircumference, Float bodyFatPercentage, Person person) {
         this.height = height;
         this.weight = weight;
         this.waistCircumference = waistCircumference;

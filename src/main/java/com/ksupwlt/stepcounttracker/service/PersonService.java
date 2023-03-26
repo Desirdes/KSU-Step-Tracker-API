@@ -8,6 +8,7 @@ import com.ksupwlt.stepcounttracker.repository.ActivityRepository;
 import com.ksupwlt.stepcounttracker.repository.BiometricRepository;
 import com.ksupwlt.stepcounttracker.repository.PersonRepository;
 import com.ksupwlt.stepcounttracker.repository.TargetRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,22 +31,47 @@ public class PersonService {
         return (List<Person>) personRepository.findAll();
     }
 
-    public Person getPersonById(long id){
-        return personRepository.findById(id).get();
+    // New Code
+    public Person getPersonById(Long personId) {
+        return personRepository.findById(personId).orElse(null);
     }
 
+    public Person updatePerson(Long personId, Person personDetails) {
+        Person person = personRepository.findById(personId).orElse(null);
+        if(person == null) return null;
+        person.setFull_name(personDetails.getFull_name());
+        person.setEmail(personDetails.getEmail());
+        person.setDemographic(personDetails.getDemographic());
+        person.setGender(personDetails.getGender());
+        person.setAge(personDetails.getAge());
+        return personRepository.save(person);
+    }
+
+    public Person createPerson(Person person) {
+        return personRepository.save(person);
+    }
+
+    public Person deletePerson(Long personId) {
+        Person person = personRepository.findById(personId).orElse(null);
+        if(person == null) return null;
+        personRepository.delete(person);
+        return person;
+    }
+
+    // TODO: To be reviewed
     public List<Person> getAllPersonsDetails() {
         List<Person> persons = personRepository.findAll();
         for (Person person : persons) {
-            List<Biometric> biometrics = biometricRepository.findByPerson(person);
+            List<Biometric> biometrics = biometricRepository.findByPersonId(person.getId());
             person.setBiometrics(biometrics);
 
-            List<Target> targets = targetRepository.findByPerson(person);
+            List<Target> targets = targetRepository.findByPersonId(person.getId());
             person.setTargets(targets);
 
-            List<Activity> activities = activityRepository.findByPerson(person);
+            List<Activity> activities = activityRepository.findByPersonId(person.getId());
             person.setActivities(activities);
         }
         return persons;
     }
+
 }

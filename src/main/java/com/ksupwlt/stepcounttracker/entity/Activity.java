@@ -22,8 +22,7 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(Long id, Date date, Integer steps, Person person) {
-        this.id = id;
+    public Activity(Date date, Integer steps, Person person) {
         this.date = date;
         this.steps = steps;
         this.person = person;

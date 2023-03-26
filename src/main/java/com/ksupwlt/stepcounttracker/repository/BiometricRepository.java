@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface BiometricRepository extends JpaRepository<Biometric, Long> {
-    List<Biometric> findByPerson(Person person);
+    List<Biometric> findByPersonId(Long personId);
 }

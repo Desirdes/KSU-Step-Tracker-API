@@ -33,18 +33,6 @@ public class Person {
     public Person() {
     }
 
-    public Person(Long id, String full_name, String email, String demographic, String gender, Integer age, List<Activity> activities, List<Target> targets, List<Biometric> biometrics) {
-        this.id = id;
-        this.full_name = full_name;
-        this.email = email;
-        this.demographic = demographic;
-        this.gender = gender;
-        this.age = age;
-        this.activities = activities;
-        this.targets = targets;
-        this.biometrics = biometrics;
-    }
-
     public Long getId() {
         return id;
     }

@@ -19,8 +19,7 @@ public class Target {
     public Target() {
     }
 
-    public Target(Long id, Integer dailySteps, Float weightLoss, Float weightLossPercentage, Person person) {
-        this.id = id;
+    public Target(Integer dailySteps, Float weightLoss, Float weightLossPercentage, Person person) {
         this.dailySteps = dailySteps;
         this.weightLoss = weightLoss;
         this.weightLossPercentage = weightLossPercentage;
