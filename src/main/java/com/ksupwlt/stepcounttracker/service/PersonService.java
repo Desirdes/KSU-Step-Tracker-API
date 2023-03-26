@@ -74,4 +74,25 @@ public class PersonService {
         return persons;
     }
 
+    public Person patchPerson(Long personId, Person personDetails) {
+        Person person = personRepository.findById(personId).orElse(null);
+        if(person == null) return null;
+
+        if(personDetails.getFull_name() != null){
+            person.setFull_name(personDetails.getFull_name());
+        }
+        if(personDetails.getEmail() != null){
+            person.setEmail(personDetails.getEmail());
+        }
+        if(personDetails.getDemographic() != null){
+            person.setDemographic(personDetails.getDemographic());
+        }
+        if(personDetails.getGender() != null){
+            person.setGender(personDetails.getGender());
+        }
+        if(personDetails.getAge() != null){
+            person.setAge(personDetails.getAge());
+        }
+        return personRepository.save(person);
+    }
 }

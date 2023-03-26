@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@JsonIgnoreProperties({"activities","targets", "biometrics"})
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonIgnoreProperties({"activities"})
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

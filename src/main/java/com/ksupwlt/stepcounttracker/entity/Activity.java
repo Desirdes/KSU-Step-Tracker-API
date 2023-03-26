@@ -17,6 +17,7 @@ public class Activity {
     private Integer steps;
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
+    @JsonIdentityReference(alwaysAsId = true)
     private Person person;
 
     public Activity() {

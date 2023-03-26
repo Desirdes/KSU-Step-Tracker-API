@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
     List<Activity> findByPersonId(Long personId);
+
+    Activity findFirstByPersonIdOrderByDateDesc(Long personId);
 }

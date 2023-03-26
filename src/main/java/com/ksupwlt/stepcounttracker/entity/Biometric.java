@@ -1,9 +1,14 @@
 package com.ksupwlt.stepcounttracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Biometric {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +21,7 @@ public class Biometric {
 
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
+    @JsonIdentityReference(alwaysAsId = true)
     private Person person;
 
     public Biometric() {

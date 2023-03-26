@@ -55,6 +55,15 @@ public class PersonController {
         return ResponseEntity.notFound().build();
     }
 
+    @PatchMapping("/persons/{id}")
+    public ResponseEntity<Person> patchPerson(@PathVariable(value = "id") Long personId, @RequestBody Person personDetails){
+        Person patchedPerson = personService.patchPerson(personId, personDetails);
+        if (patchedPerson!=null){
+            return ResponseEntity.ok(patchedPerson);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     // Delete person
     @DeleteMapping("/persons/{id}")
     public ResponseEntity<Void> deletePerson(@PathVariable(value= "id") Long personId){
@@ -189,6 +198,16 @@ public class PersonController {
     @GetMapping("/persons/{personId}/activities/{activityId}")
     public ResponseEntity<Activity> getActivityById(@PathVariable(value = "personId") Long personId, @PathVariable(value = "activityId") Long activityId){
         Activity activity = activityService.getActivityById(activityId);
+        if (activity!=null){
+            return ResponseEntity.ok(activity);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    // Get latest activity
+    @GetMapping("/persons/{id}/activities/latest")
+    ResponseEntity<Activity> getLatestActivityForPerson(@PathVariable(value = "id") Long personId){
+        Activity activity = activityService.getLatestActivity(personId);
         if (activity!=null){
             return ResponseEntity.ok(activity);
         }

@@ -58,4 +58,11 @@ public class ActivityService {
         if(activity == null) return null;
         return activity;
     }
+
+    // Getting the latest activity
+    public Activity getLatestActivity(Long personId){
+        Activity latestActivity = activityRepository.findFirstByPersonIdOrderByDateDesc(personId);
+        if(latestActivity == null) return null;
+        return latestActivity;
+    }
 }
