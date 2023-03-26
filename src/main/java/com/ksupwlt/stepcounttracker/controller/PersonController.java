@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -65,19 +67,23 @@ public class PersonController {
 
     // Create Person
     @PostMapping("/persons")
-    public Person createPerson(@RequestBody Person personDetails){
+    public ResponseEntity<Void> createPerson(@RequestBody Person personDetails){
         Person newPerson = personService.createPerson(personDetails);
-        return newPerson;
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(newPerson.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
 
     // Biometrics calls
     // Create biometric
     @PostMapping("/persons/{id}/biometrics")
-    public ResponseEntity<Biometric> addBiometricsToPerson(@PathVariable(value = "id") Long personId, @RequestBody Biometric biometricDetails){
+    public ResponseEntity<Void> addBiometricsToPerson(@PathVariable(value = "id") Long personId, @RequestBody Biometric biometricDetails){
         Biometric newBiometric = biometricService.createBiometric(personId, biometricDetails);
         if (newBiometric!=null){
-            return ResponseEntity.ok(newBiometric);
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                    .path("/{id}").buildAndExpand(newBiometric.getId()).toUri();
+            return ResponseEntity.created(uri).build();
         }
         return ResponseEntity.notFound().build();
     }
@@ -123,10 +129,12 @@ public class PersonController {
     // Target Calls
     // Create target to person ID
     @PostMapping("/persons/{id}/targets")
-    public ResponseEntity<Target> createTargetByPersonId(@PathVariable(value = "id") Long personId, @RequestBody Target targetDetails){
+    public ResponseEntity<Void> createTargetByPersonId(@PathVariable(value = "id") Long personId, @RequestBody Target targetDetails){
         Target newTarget = targetService.createTarget(personId, targetDetails);
         if (newTarget!=null){
-            return ResponseEntity.ok(newTarget);
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                    .path("/{id}").buildAndExpand(newTarget.getId()).toUri();
+            return ResponseEntity.created(uri).build();
         }
         return ResponseEntity.notFound().build();
     }
@@ -199,10 +207,12 @@ public class PersonController {
 
     // Add activity for person
     @PostMapping("/persons/{id}/activities")
-    public ResponseEntity<Activity> addActivityForPerson(@PathVariable(value = "id") Long personId, @RequestBody Activity activityDetails) {
+    public ResponseEntity<Void> addActivityForPerson(@PathVariable(value = "id") Long personId, @RequestBody Activity activityDetails) {
         Activity newActivity = activityService.addActivityForPerson(personId, activityDetails);
         if (newActivity!=null){
-            return ResponseEntity.ok(newActivity);
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                    .path("/{id}").buildAndExpand(newActivity.getId()).toUri();
+            return ResponseEntity.created(uri).build();
         }
         return ResponseEntity.notFound().build();
     }
