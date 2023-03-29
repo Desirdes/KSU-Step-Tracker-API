@@ -25,6 +25,13 @@ public class User {
         this.roles = roles;
     }
 
+    public User(String username, String roles, String password, String groupID) {
+        this.username = username;
+        this.roles = roles;
+        this.password = password;
+        this.groupID = groupID;
+    }
+
     public Long getId() {
         return id;
     }

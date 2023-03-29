@@ -36,10 +36,13 @@ public class SecurityConfig {
 //                .passwordEncoder(passwordEncoder());
 //    }
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-//    @Bean
+    public SecurityConfig(UserService userService) {
+        this.userService = userService;
+    }
+
+    //    @Bean
 //	public UserDetailsService userDetailService(DataSource dataSource) {
 //
 //		var user = User.withUsername("user")
@@ -56,13 +59,7 @@ public class SecurityConfig {
 //		return new InMemoryUserDetailsManager(user, admin);
 //	}
 
-    @Bean
-    CommandLineRunner commandLineRunner(UserRepository users, PasswordEncoder encoder) {
-        return args -> {
-            users.save(new com.ksupwlt.stepcounttracker.entity.User("user",encoder.encode("password"),"ROLE_USER"));
-            users.save(new User("admin",encoder.encode("password"),"ROLE_USER,ROLE_ADMIN"));
-        };
-    }
+    // Creation of initial users for sample
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

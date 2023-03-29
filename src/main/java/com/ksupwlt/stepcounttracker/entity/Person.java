@@ -20,6 +20,7 @@ public class Person {
     private String demographic;
     private String gender;
     private Integer age;
+    private String username;
 
 //    @OneToOne(fetch =FetchType.EAGER, mappedBy = "person", cascade = CascadeType.ALL)
 //    private User user;
@@ -104,5 +105,13 @@ public class Person {
 
     public void setBiometrics(List<Biometric> biometrics) {
         this.biometrics = biometrics;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
