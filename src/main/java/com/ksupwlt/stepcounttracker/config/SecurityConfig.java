@@ -1,6 +1,10 @@
 package com.ksupwlt.stepcounttracker.config;
 
+import com.ksupwlt.stepcounttracker.entity.User;
+import com.ksupwlt.stepcounttracker.repository.UserRepository;
+import com.ksupwlt.stepcounttracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -9,7 +13,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
@@ -33,25 +36,33 @@ public class SecurityConfig {
 //                .passwordEncoder(passwordEncoder());
 //    }
 
+    @Autowired
+    private UserService userService;
+
+//    @Bean
+//	public UserDetailsService userDetailService(DataSource dataSource) {
+//
+//		var user = User.withUsername("user")
+//			.password("password")
+//                .passwordEncoder(str -> passwordEncoder().encode(str))
+//			.roles("USER")
+//			.build();
+//
+//		var admin = User.withUsername("admin")
+//				.password("password")
+//                .passwordEncoder(str -> passwordEncoder().encode(str))
+//				.roles("ADMIN", "USER")
+//				.build();
+//		return new InMemoryUserDetailsManager(user, admin);
+//	}
+
     @Bean
-	public UserDetailsService userDetailService(DataSource dataSource) {
-
-		var user = User.withUsername("user")
-			.password("password")
-                .passwordEncoder(str -> passwordEncoder().encode(str))
-			.roles("USER")
-			.build();
-
-		var admin = User.withUsername("admin")
-				.password("password")
-                .passwordEncoder(str -> passwordEncoder().encode(str))
-				.roles("ADMIN", "USER")
-				.build();
-//        System.out.println("Passwords Info Here ****");
-//        System.out.println(user.getPassword());
-//        System.out.println(admin.getPassword());
-		return new InMemoryUserDetailsManager(user, admin);
-	}
+    CommandLineRunner commandLineRunner(UserRepository users, PasswordEncoder encoder) {
+        return args -> {
+            users.save(new com.ksupwlt.stepcounttracker.entity.User("user",encoder.encode("password"),"ROLE_USER"));
+            users.save(new User("admin",encoder.encode("password"),"ROLE_USER,ROLE_ADMIN"));
+        };
+    }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -72,6 +83,7 @@ public class SecurityConfig {
         );
         http.httpBasic();
         http.csrf().disable();
+        http.userDetailsService(userService);
         http.headers().frameOptions().sameOrigin();
         return http.build();
     }
