@@ -1,5 +1,6 @@
-package com.ksupwlt.stepcounttracker.entity;
+package com.ksupwlt.stepcounttracker.service;
 
+import com.ksupwlt.stepcounttracker.entity.User;
 import com.ksupwlt.stepcounttracker.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

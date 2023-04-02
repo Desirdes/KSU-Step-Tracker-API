@@ -1,8 +1,7 @@
 package com.ksupwlt.stepcounttracker.controller.prototype;
 
-import com.ksupwlt.stepcounttracker.entity.AccessService;
+import com.ksupwlt.stepcounttracker.service.AccessService;
 import com.ksupwlt.stepcounttracker.entity.User;
-import com.ksupwlt.stepcounttracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
