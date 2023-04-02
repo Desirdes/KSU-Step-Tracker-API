@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { APIService } from './shared/APIService';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -32,7 +33,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     ChartComponent,
     LoginComponent,
     SignupComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,9 +51,9 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     ReactiveFormsModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [APIService],
   bootstrap: [AppComponent],
-  
+
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
