@@ -5,9 +5,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { MatRadioModule } from '@angular/material/radio';
 import {MatInputModule} from '@angular/material/input';
-import {MatGridListModule} from '@angular/material/grid-list';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -21,7 +22,11 @@ import { NgChartsModule } from 'ng2-charts';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { AddStepsComponent } from './add-steps/add-steps.component';
+import { ProgressComponent } from './progress/progress.component';
 
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,10 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     ChartComponent,
     LoginComponent,
     SignupComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    SidenavComponent,
+    AddStepsComponent,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,
@@ -46,12 +54,29 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     MatTabsModule,
     NgChartsModule,
     MatFormFieldModule,
-    MatGridListModule,
-    MatRadioModule,
+    MatDatepickerModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatNativeDateModule,
+    NgCircleProgressModule.forRoot({
+      "radius": 60,
+      "space": -10,
+      "outerStrokeGradient": true,
+      "outerStrokeWidth": 10,
+      "outerStrokeColor": "#4882c2",
+      "outerStrokeGradientStopColor": "#53a9ff",
+      "innerStrokeColor": "#e7e8ea",
+      "innerStrokeWidth": 10,
+      "title": "UI",
+      "animateTitle": false,
+      "animationDuration": 1000,
+      "showUnits": false,
+      "showBackground": false,
+      "clockwise": false,
+      "startFromZero": false,
+      "lazy": true})
   ],
-  providers: [],
+  providers: [AppComponent],
   bootstrap: [AppComponent],
   
   schemas: [

@@ -1,10 +1,10 @@
 <div class="header">
     <h1>Questionnaire Form</h1>
     <p>This form is to record your general and medical information, and your fitness goal so that we can accurately calculate 
-        your measurements and target data</p>
+        your measurements and target data. You must be between the ages of 19 and 40 for this study.</p>
 </div>
 <div class="row justify-content-center my-5">
-<form class="col-lg-6" [formGroup]="questionnaireForm" (ngSubmit)="questionnaireForm.status !== 'INVALID' && submit()">
+<form class="col-lg-6" [formGroup]="questionnaireForm" (ngSubmit)="questionnaireForm.status !== 'INVALID' && onsubmit()">
     <!--General Info Section-->
     <h2 class="mb-3">General Info</h2>
     <p>Please enter the following information below.</p>
@@ -14,7 +14,7 @@
             <input type="number" id="age" formControlName="age" [ngClass]="{error : getControl('age')?.errors && getControl('age')?.touched}" name="age">
             <div *ngIf="getControl('age')?.errors && getControl('age')?.touched">
                 <small class="text-danger" *ngIf="getControl('age')?.errors?.['required']">Age is required</small>
-                <small class="text-danger" *ngIf="getControl('age')?.errors?.['max'] || getControl('age')?.errors?.['min']">Age must be between 19 and 39</small><br>
+                <small class="text-danger" *ngIf="getControl('age')?.errors?.['max'] || getControl('age')?.errors?.['min']">Age must be between 19 and 40</small><br>
                 <small class="text-danger" *ngIf="getControl('age')?.errors?.['pattern']">Please enter a valid age</small>
             </div>
         </div>
@@ -115,16 +115,16 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-dark" type="submit"  [disabled]="questionnaireForm.status === 'INVALID'" (click)="submit()">Submit</button>
+    <button class="btn btn-dark" type="submit"  [disabled]="questionnaireForm.status === 'INVALID'" (click)="onsubmit()">Submit</button>
 </form>
 </div>
 
-<!---
+
 <div class="calcs">
     <p id= "targetWeight">Target Body Weight: {{this.targetWeight}}</p>
     <p id= "targetBodyFatPercentage">Target Body Fat Percentage: {{this.targetBodyFatPercentage}}</p>
     <p id= "stepsPerDay">Steps Per Day: {{this.stepsPerDay}}</p>
-</div>-->
+</div>
 
 <!---(click)="this.onsubmit()-->
 <!---ngSubmit="onSubmit()-->
