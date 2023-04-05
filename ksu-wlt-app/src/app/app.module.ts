@@ -26,6 +26,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { AddStepsComponent } from './add-steps/add-steps.component';
 import { ProgressComponent } from './progress/progress.component';
 
+// Import ng-circle-progress
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
@@ -76,7 +77,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
       "startFromZero": false,
       "lazy": true})
   ],
-  providers: [AppComponent],
+  providers: [],
   bootstrap: [AppComponent],
   
   schemas: [
