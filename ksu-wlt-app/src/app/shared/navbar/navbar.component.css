@@ -3,7 +3,8 @@
     background-color: #febc11;
     padding: 2px 10px;
     height: auto;
-
+    z-index: 2;
+    top: 0px;
   }
   
   .navbar-brand

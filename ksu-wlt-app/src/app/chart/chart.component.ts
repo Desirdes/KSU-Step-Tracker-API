@@ -8,28 +8,30 @@ import { NgChartsModule } from 'ng2-charts/public_api';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit{
- public chart: any;
+ public lineChart: any;
+ public donutChart: any;
 
- createChart(){
+ //Line Chart
+ createLineChart(){
   
-  this.chart = new Chart("MyChart", {
-    type: 'bar', //this denotes tha type of chart
+  this.lineChart = new Chart("MyChart", {
+    type: 'line', //this denotes tha type of chart
 
     data: {// values on X-Axis
-      labels: ['2022-05-10', '2022-05-11', '2022-05-12','2022-05-13',
-               '2022-05-14', '2022-05-15', '2022-05-16','2022-05-17', ], 
+      labels: ['January', 'February', 'March','April',
+               'May', 'June', 'July','August'], 
        datasets: [
         {
-          label: "Sales",
-          data: ['467','576', '572', '79', '92',
-               '574', '573', '576'],
-          backgroundColor: 'blue'
+          label: "My Step Count",
+          data: ['10000','21000', '572', '30000', '12345',
+               '5145', '4321', '6185'],
+          backgroundColor: 'red'
         },
         {
-          label: "Profit",
-          data: ['542', '542', '536', '327', '17',
-                 '0.00', '538', '541'],
-          backgroundColor: 'limegreen'
+          label: "Target Step Count",
+          data: ['10535', '11652', '8566', '100563', '500321',
+                 '89045', '78906', '93468'],
+          backgroundColor: 'lightblue'
         }  
       ]
     },
@@ -40,8 +42,32 @@ export class ChartComponent implements OnInit{
   });
 }
 
+//Donut Chart
+createDonutChart(){
+  
+  this.lineChart = new Chart("MyDonutChart", {
+    type: 'doughnut',
+    data: {
+      labels: [
+        'Target Step Count',
+        'Current Step Count'
+      ],
+      datasets: [{
+        label: 'My First Dataset',
+        data: [10756, 9465],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+        ],
+        hoverOffset: 4
+      }]
+    }
+  }
+)}
+
 ngOnInit(): void {
-  this.createChart();
+  this.createLineChart();
+  this.createDonutChart();
 }
 
 

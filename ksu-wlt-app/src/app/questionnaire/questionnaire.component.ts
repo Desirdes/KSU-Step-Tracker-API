@@ -1,6 +1,8 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, OnInit, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
+import { AppComponent } from '../app.component';
+import { UserDashboardComponent } from '../user-dashboard/user-dashboard.component';
 
 @Component({
   selector: 'app-questionnaire',
@@ -8,12 +10,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./questionnaire.component.css'],
 })
 
-export class QuestionnaireComponent{
+export class QuestionnaireComponent {
+
+  //Output form submit Event Emitter
+ @Output() submitQuestionnaireEvent = new EventEmitter<any>()
+
 integerRegex = /^\d+$/
 integerRegexDecimal = /^\d*\.?\d*$/
 
   questionnaireForm = this.fb.group({
-    age: ['', [Validators.required, Validators.max(39), Validators.min(19), Validators.pattern(this.integerRegex)]],
+    age: ['', [Validators.required, Validators.max(40), Validators.min(19), Validators.pattern(this.integerRegex)]],
     sex: ['', [Validators.required]],
     race: ['', [Validators.required]],
     height: ['', [Validators.required, Validators.pattern(this.integerRegexDecimal)]],
@@ -50,18 +56,33 @@ public stepsPerDay = 0;
 public lbsConversionToKG = 2.2;
 public percentageConversionToKG = 0.2;
 
-//constructor(private router: Router) {}
-
-public submit() {
+/*public submit() {
   // TODO: Use EventEmitter with form value
   console.warn(this.questionnaireForm.value);
-  this.router.navigate(['/user-profile']);
-}
+  this.router.navigate(['/user-dashboard']);
+}*/
 
+//Send query param to user-dashboard
 public onsubmit() {
   this.calcTargetBodyFatPercentage();
   this.calcTargetWeight();
   this.calcSteps();
+
+  //This is temporary
+  
+
+  /*this.router.navigate(['/user-dashboard']);
+  this.submitQuestionnaireEvent.emit(this.calcTargetBodyFatPercentage())
+  this.submitQuestionnaireEvent.emit(this.calcTargetWeight())
+  this.submitQuestionnaireEvent.emit(this.calcSteps())
+  /*let navigationExtras: NavigationExtras = {
+    queryParams: {
+      "targetBodyFatPercentage":this.calcTargetBodyFatPercentage(),
+      "targetWeight":this.calcTargetWeight(),
+      "stepsPerDay":this.calcSteps()
+    }
+  };*/
+  //this.router.navigate(['/user-dashboard']);
 }
 
 //Round to the nearest 10th
@@ -69,8 +90,7 @@ public calcTargetWeight() { //This is correct
   var currentWeight = +this.questionnaireForm.value.weight!/this.lbsConversionToKG;
   var targetWeightLoss = (+this.questionnaireForm.value.targetWeightLossPercentage!/100) + this.percentageConversionToKG;
   var targetWeight = currentWeight - targetWeightLoss;
-  targetWeight.toFixed(2)
-  this.targetWeight = targetWeight;
+  this.targetWeight = +targetWeight.toFixed(2);
 }
 
 public calcTargetBodyFatPercentage() { //This needs work; it may be right but weight conversion is iffy
@@ -80,20 +100,20 @@ public calcTargetBodyFatPercentage() { //This needs work; it may be right but we
   var newFatMass = currentFatMass - targetWeightLoss;
   var targetWeight = (+this.questionnaireForm.value.weight!/this.lbsConversionToKG) - targetWeightLoss; 
   var targetBodyFatPercentage = (newFatMass / targetWeight) * 100;
-  targetBodyFatPercentage.toFixed(2)
-  this.targetBodyFatPercentage = targetBodyFatPercentage;
+  this.targetBodyFatPercentage = +targetBodyFatPercentage.toFixed(2);
 }
 
 public calcSteps() { //This is starting to get right, but the above is wrong
   if(this.questionnaireForm.value.sex == "Male") {
     var stepsPerPoundPerDay =  39377.34 / (this.targetBodyFatPercentage)^1.3405;
-    stepsPerPoundPerDay.toFixed(0);
-    this.stepsPerDay = stepsPerPoundPerDay * ((+this.questionnaireForm.value.weight!/this.lbsConversionToKG) * (+this.questionnaireForm.value.bodyFatPercentage!/100));
+    this.stepsPerDay = +stepsPerPoundPerDay * ((+this.questionnaireForm.value.weight!/this.lbsConversionToKG) * (+this.questionnaireForm.value.bodyFatPercentage!/100));
+    this.stepsPerDay = +this.stepsPerDay.toFixed(0);
   }
   else if (this.questionnaireForm.value.sex == "Female") {
     var stepsPerPoundPerDay =  261425.4 / (this.targetBodyFatPercentage)^1.8797;
     stepsPerPoundPerDay.toFixed(0);
-    this.stepsPerDay = stepsPerPoundPerDay * ((+this.questionnaireForm.value.weight!/this.lbsConversionToKG) * (+this.questionnaireForm.value.bodyFatPercentage!/100));
+    this.stepsPerDay = +stepsPerPoundPerDay.toFixed(0) * ((+this.questionnaireForm.value.weight!/this.lbsConversionToKG) * (+this.questionnaireForm.value.bodyFatPercentage!/100));
+    this.stepsPerDay = +this.stepsPerDay.toFixed(0);
   }
 }
 }
