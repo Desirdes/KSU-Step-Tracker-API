@@ -66,17 +66,15 @@ export class SignupComponent {
   }
 
   private async signupUser(){
-      await this.apiService.signupUser(this.signupForm.get('name').value, this.signupForm.get('email').value, this.signupForm.get('username').value, this.signupForm.get('password').value).then(async response => {
-        console.log("response: " + JSON.stringify(response));
-
+      await this.apiService.signupUser(this.signupForm.get('name').value, this.signupForm.get('email').value, this.signupForm.get('username').value, this.signupForm.get('password').value).then(async signupResponse => {
         // Login user then send to questions
         await this.apiService.loginUser(this.signupForm.get('username').value, this.signupForm.get('password').value).then(loginResponse => {
-            console.log("loginResponse successful");
-
-            this.appComponent.currentUser.id = 1;
-
             // On successful login set the user basic auth
             this.apiService.userBasicAuth = btoa(this.signupForm.get('username').value + ":" + this.signupForm.get('password').value);
+
+            // Set the personID and username for logged in user
+            this.appComponent.currentPerson.id = loginResponse.personID;
+            this.appComponent.currentPerson.username = loginResponse.username;
 
             // Route to questionnaire
             this.router.navigate(['/questionnaire']);

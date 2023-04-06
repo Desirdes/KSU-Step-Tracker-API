@@ -39,12 +39,12 @@ export class LoginComponent{
   private async loginUser(){
     // Login user then send to dashboard
     await this.apiService.loginUser(this.loginForm.get('username').value, this.loginForm.get('password').value).then(loginResponse => {
-        console.log("loginResponse successful");
-
-        this.appComponent.currentUser.id = 1;
-
         // On successful login set the user basic auth
         this.apiService.userBasicAuth = btoa(this.loginForm.get('username').value + ":" + this.loginForm.get('password').value);
+
+        // Set the personID and username for logged in user
+        this.appComponent.currentPerson.id = loginResponse.personID;
+        this.appComponent.currentPerson.username = loginResponse.username;
 
         // Route to dashboard
         this.router.navigate(['/user-dashboard']);

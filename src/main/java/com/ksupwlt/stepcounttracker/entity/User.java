@@ -13,6 +13,8 @@ public class User {
     private String password;
     private String groupID;
 
+    private Long personID;
+
 //    @OneToOne
 //    private Person person;
 
@@ -70,5 +72,13 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Long getPersonID() {
+        return personID;
+    }
+
+    public void setPersonId(Long personID) {
+        this.personID = personID;
     }
 }

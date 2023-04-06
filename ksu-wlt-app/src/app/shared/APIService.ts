@@ -29,7 +29,9 @@ export class APIService {
       });
 
       if(response.ok){
-        return Promise.resolve();
+        // Get json of return data
+        const jsonValue = await response.json();
+        return Promise.resolve(jsonValue);
       } else {
         // Get text for error message
         const errorText = await response.text();
@@ -53,9 +55,7 @@ export class APIService {
     });
 
     if(response.ok){
-      // Get json of return data
-      const jsonValue = await response.json();
-      return Promise.resolve(jsonValue);
+      return Promise.resolve();
     } else {
       // Get text for error message
       const errorText = await response.text();

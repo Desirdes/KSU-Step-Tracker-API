@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { APIService } from './shared/APIService';
-import { User } from './shared/models/UserData.model';
+import { Person } from './shared/models/UserData.model';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
 
   }
 
-  currentUser = new User();
+  currentPerson = new Person();
 
   // In case we need to test things on application init
   ngOnInit(){
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit{
   public targetWeight = 0;
   public targetBodyFatPercentage = 0;
   public stepsPerDay = 0;
-  
+
   onFileSelected(event: any){
     this.selectedFile = event.target.files[0];
   }
