@@ -3,5 +3,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin-left: 10px; */
+    flex-direction: column;
+}
+
+.chart2-container {
+    margin-top: 5rem;
+    height: 30rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
