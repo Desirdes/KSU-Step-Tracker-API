@@ -29,6 +29,19 @@ public class AccessService {
         return newUser;
     }
 
+    public boolean validateUser(String username, String password){
+        var matchingUser = userRepository.findByUsername(username);
+        if(matchingUser == null){
+            return false;
+        } else {
+            if(passwordEncoder.matches(password, matchingUser.getPassword())){
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
     // Used for test purposes
     @Bean
     CommandLineRunner commandLineRunner() {

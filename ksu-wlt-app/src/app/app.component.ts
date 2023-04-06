@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { APIService } from './shared/APIService';
+import { User } from './shared/models/UserData.model';
 
 @Component({
   selector: 'app-root',
@@ -19,12 +20,11 @@ export class AppComponent implements OnInit{
 
   }
 
+  currentUser = new User();
+
   // In case we need to test things on application init
   ngOnInit(){
-    // Testing API calls
-    this.apiService.getPersonByID(1).subscribe((data: any[]) => {
-      console.log(data);
-    });
+
   }
 
   onFileSelected(event: any){
