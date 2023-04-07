@@ -11,7 +11,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-    
+
     <!--Main Form-->
     <div class="row justify-content-center my-5">
         <form [formGroup]="addStepsForm" (ngSubmit)="addStepsForm.status !== 'INVALID' && onSubmit()">
@@ -19,7 +19,7 @@
             <h2 class="mb-3">+ Add Steps</h2>
             <div class="form-row justify-content-center">
                 <div class="form-group col-sm-4">
-                    <label for="age">Steps</label>
+                    <label for="steps">Steps</label>
                     <input type="number" id="steps" formControlName="steps" [ngClass]="{error : getControl('steps')?.errors && getControl('steps')?.touched}" name="steps">
                     <div *ngIf="getControl('steps')?.errors && getControl('steps')?.touched">
                         <small class="text-danger" *ngIf="getControl('steps')?.errors?.['required']">Steps is required</small>
@@ -30,7 +30,7 @@
                     <label for="date">Date</label>
                     <mat-form-field class="example-full-width" appearance="fill">
                         <mat-label>Choose a date</mat-label>
-                        <input matInput [min]="minDate" [max]="maxDate" formControlName="date" [ngClass]="{error : getControl('steps')?.errors && getControl('steps')?.touched}" [matDatepicker]="picker">
+                        <input id="date" matInput [min]="minDate" [max]="maxDate" formControlName="date" [ngClass]="{error : getControl('steps')?.errors && getControl('steps')?.touched}" [matDatepicker]="picker">
                         <mat-hint>MM/DD/YYYY</mat-hint>
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
@@ -38,9 +38,9 @@
                     <div *ngIf="getControl('date')?.errors && getControl('date')?.touched">
                         <small class="text-danger" *ngIf="getControl('date')?.errors?.['required']">Date is required</small>
                     </div>
-                </div>   
+                </div>
             </div>
-            <button class="btn btn-dark" id="submit" type="submit" [disabled]="addStepsForm.status === 'INVALID'" (click)="onSubmit()">Save</button>
+            <button class="btn btn-dark" id="submit" type="submit" [disabled]="addStepsForm.status === 'INVALID'">Save</button>
             <!--<button class="btn btn-light" id="goBack" type="submit" >Go Back</button>-->
         </form>
     </div>

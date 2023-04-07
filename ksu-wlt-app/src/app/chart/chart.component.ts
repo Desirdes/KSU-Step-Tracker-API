@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, ChartDataset, ChartOptions } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts/public_api';
+import { AppComponent } from '../app.component';
+import { APIService } from '../shared/APIService';
 
 @Component({
   selector: 'app-chart',
@@ -8,18 +10,24 @@ import { NgChartsModule } from 'ng2-charts/public_api';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit{
+
+  constructor(
+    private appComponent: AppComponent,
+    private apiService: APIService
+  ) {}
+
  public lineChart: any;
  public donutChart: any;
 
  //Line Chart
  createLineChart(){
-  
+
   this.lineChart = new Chart("MyChart", {
     type: 'line', //this denotes tha type of chart
 
     data: {// values on X-Axis
       labels: ['January', 'February', 'March','April',
-               'May', 'June', 'July','August'], 
+               'May', 'June', 'July','August'],
        datasets: [
         {
           label: "My Step Count",
@@ -32,19 +40,19 @@ export class ChartComponent implements OnInit{
           data: ['10535', '11652', '8566', '100563', '500321',
                  '89045', '78906', '93468'],
           backgroundColor: 'lightblue'
-        }  
+        }
       ]
     },
     options: {
       aspectRatio:2.5
     }
-    
+
   });
 }
 
 //Donut Chart
 createDonutChart(){
-  
+
   this.lineChart = new Chart("MyDonutChart", {
     type: 'doughnut',
     data: {

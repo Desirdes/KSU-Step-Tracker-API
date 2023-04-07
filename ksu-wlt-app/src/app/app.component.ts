@@ -26,9 +26,6 @@ export class AppComponent implements OnInit{
   ngOnInit(){
 
   }
-  public targetWeight = 0;
-  public targetBodyFatPercentage = 0;
-  public stepsPerDay = 0;
 
   onFileSelected(event: any){
     this.selectedFile = event.target.files[0];

@@ -12,7 +12,7 @@
 <app-sidenav></app-sidenav>
 <!--Main Content-->
 <section style="background-color: #eee;">
-    <div class="container py-5">     
+    <div class="container py-5">
       <div class="row">
         <div class="col-lg-8">
           <div class="card mb-4">
@@ -22,7 +22,7 @@
                   <p class="mb-0">Full Name</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">John Smith</p>
+                  <p class="text-muted mb-0">{{this.currentPerson.full_name}}</p>
                 </div>
               </div>
               <hr>
@@ -31,7 +31,7 @@
                   <p class="mb-0">Sex</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">Male</p>
+                  <p class="text-muted mb-0">{{this.currentPerson.gender}}</p>
                 </div>
               </div>
               <hr>
@@ -40,7 +40,7 @@
                   <p class="mb-0">Current Weight (lbs)</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">225</p>
+                  <p class="text-muted mb-0">{{this.currentPerson.biometrics[0].weight}}</p>
                 </div>
               </div>
               <hr>
@@ -49,7 +49,7 @@
                   <p class="mb-0">Target Weight (lbs)</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">120</p>
+                  <p class="text-muted mb-0">{{this.currentPerson.targets[0].weightLoss}}</p>
                 </div>
               </div>
               <hr>
@@ -58,7 +58,7 @@
                   <p class="mb-0">Height (inches)</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">65</p>
+                  <p class="text-muted mb-0">{{this.currentPerson.biometrics[0].height}}</p>
                 </div>
               </div>
               <hr>
@@ -67,7 +67,7 @@
                   <p class="mb-0">Latest Recorded Step Count</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">9465</p>
+                  <p class="text-muted mb-0">{{this.currentPerson.activity.length? this.currentPerson.activity[0].steps : 'No recorded activity.'}}</p>
                 </div>
               </div>
               <hr>
@@ -76,7 +76,7 @@
                   <p class="mb-0">Target Step Count</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">10756</p>
+                  <p class="text-muted mb-0">{{this.currentPerson.targets[0].dailySteps}}</p>
                 </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 <div class="header">
     <h1>Questionnaire Form</h1>
-    <p>This form is to record your general and medical information, and your fitness goal so that we can accurately calculate 
+    <p>This form is to record your general and medical information, and your fitness goal so that we can accurately calculate
         your measurements and target data. You must be between the ages of 19 and 40 for this study.</p>
 </div>
 <div class="row justify-content-center my-5">
@@ -115,7 +115,7 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-dark" type="submit"  [disabled]="questionnaireForm.status === 'INVALID'" (click)="onsubmit()">Submit</button>
+    <button class="btn btn-dark" type="submit"  [disabled]="questionnaireForm.status === 'INVALID'">Submit</button>
 </form>
 </div>
 
@@ -125,6 +125,3 @@
     <p id= "targetBodyFatPercentage">Target Body Fat Percentage: {{this.targetBodyFatPercentage}}</p>
     <p id= "stepsPerDay">Steps Per Day: {{this.stepsPerDay}}</p>
 </div>
-
-<!---(click)="this.onsubmit()-->
-<!---ngSubmit="onSubmit()-->

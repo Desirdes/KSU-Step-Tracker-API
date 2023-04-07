@@ -38,16 +38,30 @@ export class LoginComponent{
 
   private async loginUser(){
     // Login user then send to dashboard
-    await this.apiService.loginUser(this.loginForm.get('username').value, this.loginForm.get('password').value).then(loginResponse => {
+    await this.apiService.loginUser(this.loginForm.get('username').value, this.loginForm.get('password').value).then(async loginResponse => {
         // On successful login set the user basic auth
         this.apiService.userBasicAuth = btoa(this.loginForm.get('username').value + ":" + this.loginForm.get('password').value);
 
-        // Set the personID and username for logged in user
-        this.appComponent.currentPerson.id = loginResponse.personID;
-        this.appComponent.currentPerson.username = loginResponse.username;
+        await this.apiService.getPersonData(loginResponse.personID).then(async getPersonResponse => {
+          // Update local variables for person data of user
+          this.appComponent.currentPerson = getPersonResponse;
 
-        // Route to dashboard
-        this.router.navigate(['/user-dashboard']);
+          await this.apiService.getAllActivity(this.appComponent.currentPerson.id).then(async activityResponse => {
+            // Sort by order of date steps were done, latest to oldest
+            this.appComponent.currentPerson.activity = activityResponse.sort((a, b) => {
+              return new Date(b.date).getTime() - new Date(a.date).getTime();
+            });
+
+            // Route to dashboard
+            this.router.navigate(['/user-dashboard']);
+          }, error => {
+            console.log("error: " + error);
+                // handle error here
+          });
+        }, error => {
+          console.log("error: " + error);
+          // handle error here
+        });
       }, error => {
         console.log("error: " + error);
           // handle error here
