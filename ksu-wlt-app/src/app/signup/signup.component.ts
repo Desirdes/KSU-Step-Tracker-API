@@ -76,6 +76,8 @@ export class SignupComponent {
             this.appComponent.currentPerson.id = loginResponse.personID;
             this.appComponent.currentPerson.username = loginResponse.username;
 
+            this.appComponent.userRoles = loginResponse.roles;
+
             // Route to questionnaire
             this.router.navigate(['/questionnaire']);
           }, error => {

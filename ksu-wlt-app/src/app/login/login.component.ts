@@ -42,6 +42,8 @@ export class LoginComponent{
         // On successful login set the user basic auth
         this.apiService.userBasicAuth = btoa(this.loginForm.get('username').value + ":" + this.loginForm.get('password').value);
 
+        this.appComponent.userRoles = loginResponse.roles;
+
         await this.apiService.getPersonData(loginResponse.personID).then(async getPersonResponse => {
           // Update local variables for person data of user
           this.appComponent.currentPerson = getPersonResponse;
