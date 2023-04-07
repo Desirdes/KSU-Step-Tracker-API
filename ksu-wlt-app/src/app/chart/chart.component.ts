@@ -19,12 +19,14 @@ export class ChartComponent implements OnInit{
  public lineChart: any;
  public donutChart: any;
 
+ public currentPerson = this.appComponent.currentPerson;
+
  //Line Chart
  createLineChart(){
   // Check is user has any activity to chart
-  if(this.appComponent.currentPerson.activity.length){
-    var targetSteps = this.appComponent.currentPerson.targets[0].dailySteps;
-    var activityArray = this.appComponent.currentPerson.activity;
+  if(this.currentPerson.activity.length){
+    var targetSteps = this.currentPerson.targets[0].dailySteps;
+    var activityArray = this.currentPerson.activity;
     var dateArray = [];
     var stepsArray = [];
     // Used to make a line for chart

@@ -16,11 +16,13 @@ export class UserDashboardComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-
+    if(this.currentPerson.activity.length){
+      this.latestActivityDate = new Date(this.currentPerson.activity[0].date).toDateString();
+    }
   }
 
   public currentPerson = this.appComponent.currentPerson;
-  public latestActivityDate = new Date(this.currentPerson.activity[0].date).toDateString();
+  public latestActivityDate = new Date().toDateString();
 
 
   /*public calcData(targetWeight, targetBodyFatPercentage, stepsPerDay): void {
