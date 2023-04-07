@@ -67,7 +67,7 @@
                   <p class="mb-0">Latest Recorded Step Count</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{this.currentPerson.activity.length? this.currentPerson.activity[0].steps : 'No recorded activity.'}}</p>
+                  <p class="text-muted mb-0">{{this.currentPerson.activity.length? this.currentPerson.activity[0].steps + ' on ' + this.latestActivityDate : 'No recorded activity.'}}</p>
                 </div>
               </div>
               <hr>

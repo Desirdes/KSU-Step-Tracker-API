@@ -21,37 +21,46 @@ export class ChartComponent implements OnInit{
 
  //Line Chart
  createLineChart(){
+  // Check is user has any activity to chart
+  if(this.appComponent.currentPerson.activity.length){
+    var targetSteps = this.appComponent.currentPerson.targets[0].dailySteps;
+    var activityArray = this.appComponent.currentPerson.activity;
+    var dateArray = [];
+    var stepsArray = [];
+    // Used to make a line for chart
+    var targetStepsArray = [];
+    activityArray.forEach(activity => {
+      dateArray.unshift(new Date(activity.date).toDateString());
+      stepsArray.unshift(activity.steps);
+      targetStepsArray.unshift(targetSteps);
+    });
+    this.lineChart = new Chart("MyChart", {
+        type: 'line', //this denotes tha type of chart
 
-  this.lineChart = new Chart("MyChart", {
-    type: 'line', //this denotes tha type of chart
-
-    data: {// values on X-Axis
-      labels: ['January', 'February', 'March','April',
-               'May', 'June', 'July','August'],
-       datasets: [
-        {
-          label: "My Step Count",
-          data: ['10000','21000', '572', '30000', '12345',
-               '5145', '4321', '6185'],
-          backgroundColor: 'red'
+        data: {// values on X-Axis
+          labels: dateArray,
+           datasets: [
+            {
+              label: "Target Steps Per Day",
+              data: targetStepsArray,
+              backgroundColor: 'red'
+            },
+            {
+              label: "Step Count Per Day",
+              data: stepsArray,
+              backgroundColor: 'lightblue'
+            }
+          ]
         },
-        {
-          label: "Target Step Count",
-          data: ['10535', '11652', '8566', '100563', '500321',
-                 '89045', '78906', '93468'],
-          backgroundColor: 'lightblue'
+        options: {
+          aspectRatio:2.5
         }
-      ]
-    },
-    options: {
-      aspectRatio:2.5
-    }
-
-  });
+      });
+  }
 }
 
 //Donut Chart
-createDonutChart(){
+/*createDonutChart(){
 
   this.lineChart = new Chart("MyDonutChart", {
     type: 'doughnut',
@@ -71,11 +80,11 @@ createDonutChart(){
       }]
     }
   }
-)}
+)}*/
 
 ngOnInit(): void {
   this.createLineChart();
-  this.createDonutChart();
+  //this.createDonutChart();
 }
 
 

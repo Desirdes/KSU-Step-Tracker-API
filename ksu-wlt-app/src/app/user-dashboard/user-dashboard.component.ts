@@ -20,6 +20,7 @@ export class UserDashboardComponent implements OnInit{
   }
 
   public currentPerson = this.appComponent.currentPerson;
+  public latestActivityDate = new Date(this.currentPerson.activity[0].date).toDateString();
 
 
   /*public calcData(targetWeight, targetBodyFatPercentage, stepsPerDay): void {
