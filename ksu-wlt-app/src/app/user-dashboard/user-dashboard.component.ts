@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, ParamMap} from "@angular/router";
+import { AppComponent } from '../app.component';
+import { APIService } from '../shared/APIService';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -7,25 +9,22 @@ import {Router, ActivatedRoute, ParamMap} from "@angular/router";
   styleUrls: ['./user-dashboard.component.css']
 })
 export class UserDashboardComponent implements OnInit{
-
-  public targetWeight = 0;
-  public targetBodyFatPercentage = 0;
-  public stepsPerDay = 0;
-
-  constructor(private route: ActivatedRoute) {
-    this.route.queryParams.subscribe(params => {
-    this.targetWeight = params["targetWeight"];
-    this.targetBodyFatPercentage = params["targetBodyFatPercentage"];
-    this.stepsPerDay = params["stepsPerDay"];
-  });
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private appComponent: AppComponent,
+    private apiService: APIService
+  ) {}
 
   ngOnInit(): void {
-    
+
   }
-  public calcData(targetWeight, targetBodyFatPercentage, stepsPerDay): void {
+
+  public currentPerson = this.appComponent.currentPerson;
+
+
+  /*public calcData(targetWeight, targetBodyFatPercentage, stepsPerDay): void {
     this.targetWeight = targetWeight;
     this.targetBodyFatPercentage = targetBodyFatPercentage;
     this.stepsPerDay = stepsPerDay;
-  }
+  }*/
 }

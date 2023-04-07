@@ -10,24 +10,183 @@ export class APIService {
 
   // API root URL
   // Temporary localhost api url for testing
-  rootURL = 'http://localhost:8080';
+  private rootURL = 'http://localhost:8080';
 
-  // HTTP Headers
-  // Security will be updated for proper user check after testing.
-  standardHeaders = new HttpHeaders({'Authorization': `Basic ` + btoa('user:password')});
+  // Generated after login with format: btoa(username + ":" + password)
+  public userBasicAuth = '';
 
-  // Get list of all persons and their data
-  public getPersons(){
-    return this.http.get<any>(this.rootURL + '/persons', {headers: this.standardHeaders});
+  // User login
+  public async loginUser(username, password){
+    var data = {
+      username: username,
+      password: password
+    };
+    var body = JSON.stringify(data);
+    const response = await fetch(this.rootURL + '/access/login', {
+      method: 'POST',
+      body: body,
+      headers: {'Content-Type': 'application/json', 'Authorization': `Basic ` + btoa('user:password')}
+    });
+
+    if(response.ok){
+      // Get json of return data
+      const jsonValue = await response.json();
+      return Promise.resolve(jsonValue);
+    } else {
+      // Get text for error message
+      const errorText = await response.text();
+      return Promise.reject("Error " + response.status + ": " + errorText);
+    }
   }
 
-  // Get the data of a specific person using their ID number
-  public getPersonByID(personID){
-    return this.http.get<any>(this.rootURL + '/persons/' + personID, {headers: this.standardHeaders});
+  // User signup
+  public async signupUser(fullName, email, username, password){
+    var data = {
+      full_name: fullName,
+      email: email,
+      username: username,
+      password: password
+    };
+    var body = JSON.stringify(data);
+    const response = await fetch(this.rootURL + '/access/signup', {
+      method: 'POST',
+      body: body,
+      headers: {'Content-Type': 'application/json', 'Authorization': `Basic ` + btoa('user:password')}
+    });
+
+    if(response.ok){
+      return Promise.resolve();
+    } else {
+      // Get text for error message
+      const errorText = await response.text();
+      return Promise.reject("Error " + response.status + ": " + errorText);
+    }
   }
 
-  // Update person data based on personID
-  public updatePerson(personID, personDetails){
+  // Patch person data
+  public async patchPersonData(personID, personData){
+    var data = {
+      full_name: personData.full_name,
+      email: personData.email,
+      demographic: personData.demographic,
+      gender: personData.gender,
+      age: personData.age
+    };
+    var body = JSON.stringify(data);
+    const response = await fetch(this.rootURL + '/persons/' + personID, {
+      method: 'PATCH',
+      body: body,
+      headers: {'Content-Type': 'application/json', 'Authorization': `Basic ` + this.userBasicAuth}
+    });
 
-   }
+    if(response.ok){
+      // Get json of return data
+      const jsonValue = await response.json();
+      return Promise.resolve(jsonValue);
+    } else {
+      // Get text for error message
+      const errorText = await response.text();
+      return Promise.reject("Error " + response.status + ": " + errorText);
+    }
+  }
+
+  // Create target data
+  public async createTargetData(personID, targetData){
+    var data = {
+      dailySteps: targetData.dailySteps,
+      weightLoss: targetData.weightLoss,
+      weightLossPercentage: targetData.weightLossPercentage
+    };
+    var body = JSON.stringify(data);
+    const response = await fetch(this.rootURL + '/persons/' + personID + '/targets', {
+      method: 'POST',
+      body: body,
+      headers: {'Content-Type': 'application/json', 'Authorization': `Basic ` + this.userBasicAuth}
+    });
+
+    if(response.status == 201){
+      return Promise.resolve();
+    } else {
+      return Promise.reject("Error Creating Target Data Entry");
+    }
+  }
+
+  // Create biometric data
+  public async createBiometricData(personID, biometricData){
+    var data = {
+      bodyFatPercentage: biometricData.bodyFatPercentage,
+      height: biometricData.height,
+      weight: biometricData.weight,
+      neckCircumference: biometricData.neckCircumference,
+      waistCircumference: biometricData.waistCircumference
+    };
+    var body = JSON.stringify(data);
+    const response = await fetch(this.rootURL + '/persons/' + personID + '/biometrics', {
+      method: 'POST',
+      body: body,
+      headers: {'Content-Type': 'application/json', 'Authorization': `Basic ` + this.userBasicAuth}
+    });
+
+    if(response.status == 201){
+      return Promise.resolve();
+    } else {
+      return Promise.reject("Error Creating Biometric Data Entry");
+    }
+  }
+
+  // Get person's data by ID
+  public async getPersonData(personID){
+    const response = await fetch(this.rootURL + '/persons/' + personID, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json', 'Authorization': `Basic ` + this.userBasicAuth}
+    });
+
+    if(response.ok){
+      // Get json of return data
+      const jsonValue = await response.json();
+      return Promise.resolve(jsonValue);
+    } else {
+      // Get text for error message
+      const errorText = await response.text();
+      return Promise.reject("Error " + response.status + ": " + errorText);
+    }
+  }
+
+  // Get all activity for person
+  public async getAllActivity(personID){
+    const response = await fetch(this.rootURL + '/persons/' + personID + '/activities', {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json', 'Authorization': `Basic ` + this.userBasicAuth}
+    });
+
+    if(response.ok){
+      // Get json of return data
+      const jsonValue = await response.json();
+      return Promise.resolve(jsonValue);
+    } else {
+      // Get text for error message
+      const errorText = await response.text();
+      return Promise.reject("Error " + response.status + ": " + errorText);
+    }
+  }
+
+  // Create activity entry for person
+  public async addActivity(personID, steps, date){
+    var data = {
+      steps: steps,
+      date: date
+    };
+    var body = JSON.stringify(data);
+    const response = await fetch(this.rootURL + '/persons/' + personID + '/activities', {
+      method: 'POST',
+      body: body,
+      headers: {'Content-Type': 'application/json', 'Authorization': `Basic ` + this.userBasicAuth}
+    });
+
+    if(response.status == 201){
+      return Promise.resolve();
+    } else {
+      return Promise.reject("Error Creating Activity Data Entry");
+    }
+  }
 }

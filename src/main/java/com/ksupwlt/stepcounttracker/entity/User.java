@@ -2,14 +2,18 @@ package com.ksupwlt.stepcounttracker.entity;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
-    private String role;
+    private String roles;
     private String password;
     private String groupID;
+
+    private Long personID;
 
 //    @OneToOne
 //    private Person person;
@@ -17,10 +21,15 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String username, String role, String password, String groupID) {
-        this.id = id;
+    public User(String username, String password, String roles) {
         this.username = username;
-        this.role = role;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public User(String username, String roles, String password, String groupID) {
+        this.username = username;
+        this.roles = roles;
         this.password = password;
         this.groupID = groupID;
     }
@@ -33,20 +42,20 @@ public class User {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     public String getGroupID() {
@@ -63,5 +72,13 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Long getPersonID() {
+        return personID;
+    }
+
+    public void setPersonId(Long personID) {
+        this.personID = personID;
     }
 }

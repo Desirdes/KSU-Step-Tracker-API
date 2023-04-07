@@ -4,10 +4,10 @@
 --('alex', '$2a$10$52GwD1BYeLxR/a9X0oGtjOq3ScUN2Q0o0aFbK1Tqtpwp.TJlC/jwe','ROLE_USER',1),
 --('david', '$2a$10$v8b4GhO4A4HlyYBLwz0JZuPOulcK9NCm2oz.K.IkDh.xzzgzbk4LK','ROLE_USER',1);
 
-INSERT INTO person (full_name, email, demographic, gender, age) VALUES
-('Armando', 'armando@ksu.com', 'American', 'M', 32),
-('Alex', 'alex@ksu.com', 'American', 'F', 33),
-('David', 'david@ksue.com', 'American', 'M', 29);
+INSERT INTO person (full_name, email, demographic, gender, age, username) VALUES
+('Armando', 'armando@ksu.com', 'American', 'M', 32, 'anegrona'),
+('Alex', 'alex@ksu.com', 'American', 'F', 33, 'afulle62'),
+('David', 'david@ksue.com', 'American', 'M', 29, 'dsanfor5');
 
 -- Insert Biometric data
 INSERT INTO biometric (height, weight, waist_circumference, neck_circumference, body_fat_percentage, person_id) VALUES

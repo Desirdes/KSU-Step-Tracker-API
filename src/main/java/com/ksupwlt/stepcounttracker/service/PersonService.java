@@ -36,6 +36,10 @@ public class PersonService {
         return personRepository.findById(personId).orElse(null);
     }
 
+    public Person getPersonByUsername(String username){
+        return personRepository.findByUsername(username);
+    }
+
     public Person updatePerson(Long personId, Person personDetails) {
         Person person = personRepository.findById(personId).orElse(null);
         if(person == null) return null;

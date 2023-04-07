@@ -41,9 +41,13 @@ public class PersonController {
 
     // Get person by ID
     @GetMapping("/persons/{id}")
-    public ResponseEntity<Person> getPersonById(@PathVariable(value = "id") Long personId) {
+    public ResponseEntity getPersonById(@PathVariable(value = "id") Long personId) {
         Person person = personService.getPersonById(personId);
-        return ResponseEntity.ok(person);
+        if(person != null){
+            return ResponseEntity.status(HttpStatus.OK).body(person);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Person with that ID does not exist.");
+        }
     }
 
     // Update person
