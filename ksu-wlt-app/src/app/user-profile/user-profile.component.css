@@ -9,11 +9,13 @@ section {
   margin-left: 7rem;
 }
 
-.profile-form {
-  width: 70%; 
- }
+.card {
+  box-shadow: 30px 30px 30px 30px rgba(0, 0, 0, 0.1);
+}
 
- .profile-full-width {
-  width: 100%; 
-  } 
+.card img {
+  width: 150px; 
+  height:150px;
+  object-fit: cover;
+}
 

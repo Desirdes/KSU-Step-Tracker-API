@@ -15,7 +15,7 @@ small {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 32rem;
+    margin-left: 35rem;
 }
 
 .row {
@@ -27,7 +27,7 @@ small {
     background: #fff;
     flex-wrap: nowrap;
     padding: 50px 0;
-    margin-left: 100px;
+    margin-left: 200px;
 }
 
 form {
