@@ -122,33 +122,32 @@ export class QuestionnaireComponent {
   }
 
   //Round to the nearest 10th
-  public calcTargetWeight() { //This is correct
-    var currentWeight = +this.questionnaireForm.value.weight!/this.lbsConversionToKG;
-    var targetWeightLoss = (+this.questionnaireForm.value.targetWeightLossPercentage!/100) + this.percentageConversionToKG;
+  public calcTargetWeight() {
+    var currentWeight = +this.questionnaireForm.value.weight;
+    var targetWeightLoss = (+this.questionnaireForm.value.targetWeightLossPercentage/100)*currentWeight;
     var targetWeight = currentWeight - targetWeightLoss;
     this.targetWeight = +targetWeight.toFixed(2);
   }
 
-  public calcTargetBodyFatPercentage() { //This needs work; it may be right but weight conversion is iffy
-    var currentBodyFat = (+this.questionnaireForm.value.bodyFatPercentage!/100);
-    var currentFatMass = currentBodyFat * +this.questionnaireForm.value.weight!/this.lbsConversionToKG;
-    var targetWeightLoss = (+this.questionnaireForm.value.targetWeightLossPercentage!/100) + this.percentageConversionToKG;
-    var newFatMass = currentFatMass - targetWeightLoss;
-    var targetWeight = (+this.questionnaireForm.value.weight!/this.lbsConversionToKG) - targetWeightLoss;
-    var targetBodyFatPercentage = (newFatMass / targetWeight) * 100;
-    this.targetBodyFatPercentage = +targetBodyFatPercentage.toFixed(2);
+  public calcTargetBodyFatPercentage() {
+    var currentBodyFatPercentageDecimal = (+this.questionnaireForm.value.bodyFatPercentage/100);
+    var currentFatMass = currentBodyFatPercentageDecimal * (+this.questionnaireForm.value.weight/this.lbsConversionToKG);
+    var targetWeightLossKG = (+this.questionnaireForm.value.targetWeightLossPercentage/100) * (+this.questionnaireForm.value.weight/this.lbsConversionToKG);
+    var newFatMass = currentFatMass - targetWeightLossKG;
+    var targetWeightKG = (+this.questionnaireForm.value.weight/this.lbsConversionToKG) - targetWeightLossKG;
+    var targetBodyFatPercentage = (newFatMass / targetWeightKG) * 100;
+    this.targetBodyFatPercentage = +targetBodyFatPercentage;
   }
 
-  public calcSteps() { //This is starting to get right, but the above is wrong
+  public calcSteps() {
     if(this.questionnaireForm.value.sex == "Male") {
-      var stepsPerPoundPerDay =  39377.34 / (this.targetBodyFatPercentage)^1.3405;
-      this.stepsPerDay = +stepsPerPoundPerDay * ((+this.questionnaireForm.value.weight!/this.lbsConversionToKG) * (+this.questionnaireForm.value.bodyFatPercentage!/100));
+      var stepsPerKGPerDay =  39377.34 / (Math.pow(this.targetBodyFatPercentage,1.3405));
+      this.stepsPerDay = +stepsPerKGPerDay * ((+this.questionnaireForm.value.weight!/this.lbsConversionToKG) * (+this.questionnaireForm.value.bodyFatPercentage!/100));
       this.stepsPerDay = +this.stepsPerDay.toFixed(0);
     }
     else if (this.questionnaireForm.value.sex == "Female") {
-      var stepsPerPoundPerDay =  261425.4 / (this.targetBodyFatPercentage)^1.8797;
-      stepsPerPoundPerDay.toFixed(0);
-      this.stepsPerDay = +stepsPerPoundPerDay.toFixed(0) * ((+this.questionnaireForm.value.weight!/this.lbsConversionToKG) * (+this.questionnaireForm.value.bodyFatPercentage!/100));
+      var stepsPerKGPerDay =  261425.4 / (Math.pow(this.targetBodyFatPercentage,1.8797));
+      this.stepsPerDay = +stepsPerKGPerDay * ((+this.questionnaireForm.value.weight!/this.lbsConversionToKG) * (+this.questionnaireForm.value.bodyFatPercentage!/100));
       this.stepsPerDay = +this.stepsPerDay.toFixed(0);
     }
   }
