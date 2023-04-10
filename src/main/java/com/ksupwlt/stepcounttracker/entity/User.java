@@ -34,6 +34,14 @@ public class User {
         this.groupID = groupID;
     }
 
+    public User(String username, String password, String roles, String groupID, Long personID) {
+        this.username = username;
+        this.roles = roles;
+        this.password = password;
+        this.groupID = groupID;
+        this.personID = personID;
+    }
+
     public Long getId() {
         return id;
     }
