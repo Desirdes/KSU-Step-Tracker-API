@@ -6,11 +6,11 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@JsonIgnoreProperties({"activities"})
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,8 @@ public class Person {
     private String gender;
     private Integer age;
     private String username;
+
+    private Date signupDate;
 
 //    @OneToOne(fetch =FetchType.EAGER, mappedBy = "person", cascade = CascadeType.ALL)
 //    private User user;
@@ -113,5 +115,13 @@ public class Person {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Date getSignupDate() {
+        return signupDate;
+    }
+
+    public void setSignupDate(Date signupDate) {
+        this.signupDate = signupDate;
     }
 }

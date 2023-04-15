@@ -5,6 +5,9 @@ import com.ksupwlt.stepcounttracker.entity.Person;
 import com.ksupwlt.stepcounttracker.repository.BiometricRepository;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -40,9 +43,14 @@ public class BiometricService {
 
     public Biometric createBiometric(Long personId, Biometric biometricDetails) {
         Person person = personService.getPersonById(personId);
-        if (person==null) return null;
-        biometricDetails.setPerson(person);
-        return biometricRepository.save(biometricDetails);
+        if (person==null) {
+            return null;
+        } else {
+            biometricDetails.setPerson(person);
+            Date currentDateTime = new Date(System.currentTimeMillis());
+            biometricDetails.setDateUpdated(currentDateTime);
+            return biometricRepository.save(biometricDetails);
+        }
     }
 
     public Biometric deleteBiometricById(Long biometricId) {

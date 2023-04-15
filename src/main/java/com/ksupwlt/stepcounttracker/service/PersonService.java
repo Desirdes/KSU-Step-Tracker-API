@@ -11,6 +11,7 @@ import com.ksupwlt.stepcounttracker.repository.TargetRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -52,6 +53,8 @@ public class PersonService {
     }
 
     public Person createPerson(Person person) {
+        Date currentDateTime = new Date(System.currentTimeMillis());
+        person.setSignupDate(currentDateTime);
         return personRepository.save(person);
     }
 

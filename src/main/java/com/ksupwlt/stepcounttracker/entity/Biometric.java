@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -19,6 +20,8 @@ public class Biometric {
     private Float neckCircumference;
     private Float bodyFatPercentage;
 
+    private Date dateUpdated;
+
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
     @JsonIdentityReference(alwaysAsId = true)
@@ -27,13 +30,14 @@ public class Biometric {
     public Biometric() {
     }
 
-    public Biometric(Float height, Float weight, Float waistCircumference, Float neckCircumference, Float bodyFatPercentage, Person person) {
+    public Biometric(Float height, Float weight, Float waistCircumference, Float neckCircumference, Float bodyFatPercentage, Person person, Date dateUpdated) {
         this.height = height;
         this.weight = weight;
         this.waistCircumference = waistCircumference;
         this.neckCircumference = neckCircumference;
         this.bodyFatPercentage = bodyFatPercentage;
         this.person = person;
+        this.dateUpdated = dateUpdated;
     }
 
     public Long getId() {
@@ -90,5 +94,13 @@ public class Biometric {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public Date getDateUpdated() {
+        return dateUpdated;
+    }
+
+    public void setDateUpdated(Date dateUpdated) {
+        this.dateUpdated = dateUpdated;
     }
 }

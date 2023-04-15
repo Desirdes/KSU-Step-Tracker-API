@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -17,6 +18,8 @@ public class Target {
     private Float weightLoss;
     private Float weightLossPercentage;
 
+    private Date dateUpdated;
+
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
     @JsonIdentityReference(alwaysAsId = true)
@@ -25,11 +28,12 @@ public class Target {
     public Target() {
     }
 
-    public Target(Integer dailySteps, Float weightLoss, Float weightLossPercentage, Person person) {
+    public Target(Integer dailySteps, Float weightLoss, Float weightLossPercentage, Person person, Date dateUpdated) {
         this.dailySteps = dailySteps;
         this.weightLoss = weightLoss;
         this.weightLossPercentage = weightLossPercentage;
         this.person = person;
+        this.dateUpdated = dateUpdated;
     }
 
     public Long getId() {
@@ -70,5 +74,13 @@ public class Target {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public Date getDateUpdated() {
+        return dateUpdated;
+    }
+
+    public void setDateUpdated(Date dateUpdated) {
+        this.dateUpdated = dateUpdated;
     }
 }

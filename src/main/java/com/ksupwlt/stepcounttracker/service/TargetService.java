@@ -6,6 +6,9 @@ import com.ksupwlt.stepcounttracker.entity.Target;
 import com.ksupwlt.stepcounttracker.repository.TargetRepository;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -38,9 +41,14 @@ public class TargetService {
 
     public Target createTarget(Long personId, Target targetDetails) {
         Person person = personService.getPersonById(personId);
-        if (person==null) return null;
-        targetDetails.setPerson(person);
-        return targetRepository.save(targetDetails);
+        if (person==null) {
+            return null;
+        } else {
+            targetDetails.setPerson(person);
+            Date currentDateTime = new Date(System.currentTimeMillis());
+            targetDetails.setDateUpdated(currentDateTime);
+            return targetRepository.save(targetDetails);
+        }
     }
 
     public Target deleteTargetById(Long targetId) {
