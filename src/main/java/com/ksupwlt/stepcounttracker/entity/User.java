@@ -15,6 +15,7 @@ public class User {
     private String groupID;
 
     private Long personID;
+    private Boolean resetPassword;
 
 //    @OneToOne
 //    private Person person;
@@ -26,6 +27,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.roles = roles;
+        this.resetPassword = false;
     }
 
     public User(String username, String roles, String password, String groupID) {
@@ -33,6 +35,7 @@ public class User {
         this.roles = roles;
         this.password = password;
         this.groupID = groupID;
+        this.resetPassword = false;
     }
 
     public User(String username, String password, String roles, String groupID, Long personID) {
@@ -41,6 +44,7 @@ public class User {
         this.password = password;
         this.groupID = groupID;
         this.personID = personID;
+        this.resetPassword = false;
     }
 
     public Long getId() {
@@ -89,5 +93,13 @@ public class User {
 
     public void setPersonId(Long personID) {
         this.personID = personID;
+    }
+
+    public Boolean getResetPassword() {
+        return resetPassword;
+    }
+
+    public void setResetPassword(Boolean resetPassword) {
+        this.resetPassword = resetPassword;
     }
 }

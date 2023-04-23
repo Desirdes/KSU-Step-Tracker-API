@@ -88,4 +88,14 @@ public class AuthenticationController {
             return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Username/Password Invalid.");
         }
     }
+
+    @PostMapping("/password-reset")
+    public ResponseEntity resetPassword(@RequestBody User user){
+        // Endpoint will work only for users that have been flagged by admin
+        if(accessService.resetUserPassword(user)){
+            return ResponseEntity.noContent().build();
+        }else {
+            return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
 }

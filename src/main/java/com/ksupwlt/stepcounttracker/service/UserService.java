@@ -31,4 +31,15 @@ public class UserService implements UserDetailsService {
         }
         return new UserSecurity(user);
     }
+
+    public boolean flagUserResetPassword(String username){
+        // Flag user only if it's founds
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            return false;
+        }
+        user.setResetPassword(true);
+        userRepository.save(user);
+        return true;
+    }
 }
