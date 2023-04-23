@@ -73,8 +73,10 @@ public class SecurityConfig {
                 auth -> {
                     auth
                             //.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                            .mvcMatchers("/access/**").permitAll()
                             .mvcMatchers("/api/v1/users/**").hasRole("USER")
                             .mvcMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                            .mvcMatchers("/swagger-ui/**").hasRole("ADMIN")
                             .anyRequest().authenticated();
                 });
 

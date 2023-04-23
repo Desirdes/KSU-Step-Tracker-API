@@ -1,6 +1,7 @@
 package com.ksupwlt.stepcounttracker.service;
 
 import com.ksupwlt.stepcounttracker.entity.User;
+import com.ksupwlt.stepcounttracker.entity.UserSecurity;
 import com.ksupwlt.stepcounttracker.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -41,6 +42,13 @@ public class AccessService {
                 return false;
             }
         }
+    }
+
+    public boolean userIsPerson(UserSecurity loggedInUser, Long personID){
+        if (loggedInUser.getPersonID() == personID){
+            return true;
+        }
+        return false;
     }
 
     // Used for test purposes

@@ -34,6 +34,14 @@ public class UserSecurity implements UserDetails {
         return user.getUsername();
     }
 
+    public String getGroupID(){
+        return user.getGroupID();
+    }
+
+    public Long getPersonID(){
+        return user.getPersonID();
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
