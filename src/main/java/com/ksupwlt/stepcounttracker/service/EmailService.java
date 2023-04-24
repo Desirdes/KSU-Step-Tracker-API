@@ -26,7 +26,7 @@ public class EmailService {
     public void sendEmail(String recipient, String subject, String content) throws UnsupportedEncodingException, MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
-        helper.setFrom(fromEmailAddress, "KSU Weight Loss Tracker");
+        helper.setFrom(fromEmailAddress, "KSU Weight Loss Step Tracker");
         helper.setTo(recipient);
         helper.setSubject(subject);
         helper.setText(content, true);

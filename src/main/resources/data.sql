@@ -7,7 +7,7 @@
 INSERT INTO person (full_name, email, demographic, gender, age, username, signup_date) VALUES
 ('Armando', 'armando@ksu.com', 'American', 'Male', 32, 'anegrona', '2023-1-1'),
 ('Alex', 'alex@ksu.com', 'American', 'Female', 33, 'afulle62', '2023-1-1'),
-('David Sanford', 'david@ksue.com', 'American', 'Male', 29, 'dsanfor5', '2023-1-1');
+('David Sanford', 'pgmdes@gmail.com', 'American', 'Male', 29, 'dsanfor5', '2023-1-1');
 
 -- Insert Biometric data
 INSERT INTO biometric (height, weight, waist_circumference, neck_circumference, body_fat_percentage, person_id, date_updated) VALUES

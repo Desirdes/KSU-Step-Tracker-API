@@ -90,9 +90,9 @@ public class AuthenticationController {
     }
 
     @PostMapping("/password-reset")
-    public ResponseEntity resetPassword(@RequestBody User user){
+    public ResponseEntity resetPassword(@RequestBody AccessService.passwordResetData data){
         // Endpoint will work only for users that have been flagged by admin
-        if(accessService.resetUserPassword(user)){
+        if(accessService.resetUserPassword(data)){
             return ResponseEntity.noContent().build();
         }else {
             return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

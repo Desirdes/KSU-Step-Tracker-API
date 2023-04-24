@@ -50,14 +50,31 @@ public class AccessService {
         }
         return false;
     }
-    public boolean resetUserPassword(User user){
+
+    public static class passwordResetData{
+        private String username;
+        private String password;
+
+        public passwordResetData(String username, String password) {
+            this.username = username;
+            this.password = password;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+        public String getPassword() {
+            return password;
+        }
+    }
+    public boolean resetUserPassword(passwordResetData data){
         // Find user, and check it has password reset flag
         // If it is found, reset password with new one provided
-        User userFound = userRepository.findByUsername(user.getUsername());
+        User userFound = userRepository.findByUsername(data.getUsername());
         if (userFound == null){
             return false;
         } else if(userFound.getResetPassword()){
-            userFound.setPassword(passwordEncoder.encode(user.getPassword()));
+            userFound.setPassword(passwordEncoder.encode(data.getPassword()));
             userFound.setResetPassword(false);
             userRepository.save(userFound);
             return true;
