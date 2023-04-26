@@ -5,8 +5,6 @@ import com.ksupwlt.stepcounttracker.entity.Person;
 import com.ksupwlt.stepcounttracker.repository.BiometricRepository;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.ksupwlt.stepcounttracker.controller.prototype;
+package com.ksupwlt.stepcounttracker.controller;
 
 import com.ksupwlt.stepcounttracker.entity.Person;
 import com.ksupwlt.stepcounttracker.repository.UserRepository;

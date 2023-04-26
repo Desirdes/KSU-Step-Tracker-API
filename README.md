@@ -19,7 +19,7 @@ TODO: Guide users through getting your code up and running on their own system. 
 1. Download the IntelliJ Ultimate version: https://www.jetbrains.com/idea/download/
    2. Get the student license to get all developer tools from Jetbrains: https://www.jetbrains.com/community/education/#students
 2. Download Java: https://www.java.com/en/download/manual.jsp
-3. Download Node.JS version 19.6.0: https://nodejs.org/en/#download
+3. Download Node.JS version 18.15.0: https://nodejs.org/en/#download
 
 # Software Dependencies
 * [Springboot Initializer](https://spring.io/)

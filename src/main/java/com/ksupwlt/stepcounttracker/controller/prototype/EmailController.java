@@ -1,4 +1,4 @@
-package com.ksupwlt.stepcounttracker.controller;
+package com.ksupwlt.stepcounttracker.controller.prototype;
 
 import com.ksupwlt.stepcounttracker.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
 
-@CrossOrigin
-@RestController
+//@CrossOrigin
+//@RestController
 public class EmailController {
     @Autowired
     private EmailService emailService;

@@ -1,8 +1,8 @@
 -- Insert User data
---INSERT INTO user (username, password, role, groupID) VALUES
---('mando', '$2a$10$5a9H7r5.hiKWdU6yvU6yKO/ZNyvj2Ywq3ZfMd2lEiX7DITeLChfCK','ROLE_USER',1),
---('alex', '$2a$10$52GwD1BYeLxR/a9X0oGtjOq3ScUN2Q0o0aFbK1Tqtpwp.TJlC/jwe','ROLE_USER',1),
---('david', '$2a$10$v8b4GhO4A4HlyYBLwz0JZuPOulcK9NCm2oz.K.IkDh.xzzgzbk4LK','ROLE_USER',1);
+INSERT INTO users (id, username, password, roles, groupid, personid, reset_password) VALUES
+(1, 'anegrona', '$2a$10$hawhRLPtIj/mmZdD7/2Og.CzcvrkKY3VNPRHa1ZVlBOfK3gLyLCaK','ROLE_USER',1, 1, false),
+(2, 'afulle62', '$2a$10$G/rAK1NrOyx4GZ6k4i5XO.ONbePhZDfBTP1XPh9O6D6IC5INMhf6C','ROLE_USER,ROLE_ADMIN',1, 2, false),
+(3, 'dsanfor5', '$2a$10$pIKoIvqMXm3pVpRXudwCheElow12BtdAQW2BTc3dn3r9hrx.7y6NK','ROLE_USER,ROLE_ADMIN',1, 3, false);
 
 INSERT INTO person (full_name, email, demographic, gender, age, username, signup_date) VALUES
 ('Armando', 'armando@ksu.com', 'American', 'Male', 32, 'anegrona', '2023-1-1'),

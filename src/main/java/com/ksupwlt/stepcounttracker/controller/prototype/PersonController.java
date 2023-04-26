@@ -1,4 +1,4 @@
-package com.ksupwlt.stepcounttracker.controller;
+package com.ksupwlt.stepcounttracker.controller.prototype;
 
 import com.ksupwlt.stepcounttracker.entity.Activity;
 import com.ksupwlt.stepcounttracker.entity.Biometric;
@@ -18,8 +18,8 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
-@CrossOrigin
-@RestController
+//@CrossOrigin
+//@RestController
 public class PersonController {
     @Autowired
     private PersonService personService;

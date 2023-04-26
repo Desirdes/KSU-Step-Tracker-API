@@ -1,8 +1,6 @@
 package com.ksupwlt.stepcounttracker.controller;
 
-import com.ksupwlt.stepcounttracker.entity.Activity;
 import com.ksupwlt.stepcounttracker.entity.Person;
-import com.ksupwlt.stepcounttracker.entity.User;
 import com.ksupwlt.stepcounttracker.service.EmailService;
 import com.ksupwlt.stepcounttracker.service.PersonService;
 import com.ksupwlt.stepcounttracker.service.UserService;

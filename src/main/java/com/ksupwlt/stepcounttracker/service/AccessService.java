@@ -81,16 +81,4 @@ public class AccessService {
         }
         return false;
     }
-
-    // Used for test purposes
-    @Bean
-    CommandLineRunner commandLineRunner() {
-        return args -> {
-            userRepository.save(new User("anegrona",passwordEncoder.encode("password"),"ROLE_USER","1", (long) 1));
-            userRepository.save(new User("afulle62",passwordEncoder.encode("password"),"ROLE_USER,ROLE_ADMIN","1", (long) 2));
-            userRepository.save(new User("dsanfor5",passwordEncoder.encode("password"),"ROLE_USER,ROLE_ADMIN","1", (long) 3));
-            userRepository.save(new User("user",passwordEncoder.encode("password"),"ROLE_USER"));
-            userRepository.save(new User("admin",passwordEncoder.encode("password"),"ROLE_USER,ROLE_ADMIN"));
-        };
-    }
 }

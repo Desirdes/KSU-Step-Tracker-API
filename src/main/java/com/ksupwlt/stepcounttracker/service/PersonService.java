@@ -65,7 +65,7 @@ public class PersonService {
         return person;
     }
 
-    // TODO: To be reviewed
+    // Getting all the persons Details
     public List<Person> getAllPersonsDetails() {
         List<Person> persons = personRepository.findAll();
         for (Person person : persons) {
